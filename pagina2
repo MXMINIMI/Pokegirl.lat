@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to he Pokegirl.Lat </title>
+   <style>
+    body { font-family: Arial; text-align: center; background: #f9f9f9; }
+    .producto { margin: 20px; padding: 10px; background: #fff; border: 1px solid #ccc; display: inline-block; }
+    img { width: 200px; }
+    a { color: #0077cc; font-weight: bold; text-decoration: none; }
+
+
+  <style>
+    .imagen-hover {
+      width: 200px;          /* tamaño inicial */
+      transition: transform 0.3s ease; /* animación suave */
+      cursor: pointer;       /* cambia el cursor */
+    }
+
+    .imagen-hover:hover {
+      transform: scale(2);   /* agranda al pasar el mouse */
+    }
+    
+
+
+     
+  </style>
+</head>
+<body>
+  <p style="font-size:2px">
+       <a href="index.html">  <img src="espanol.png" >
+         </a>
+      <img src="ingles.png" >
+  <br>
+  <h1>Hi, i'm Fanny, welcomte to my shop ,  <br>
+I’m offering Pokémon breeding services,
+<br>
+    I can help you get the Pokes you need n.n ,
+     <br> 
+     Get your Pokes starting at just 2 bucks</h1>
+   <img src="Lika.png">
+    </p>
+<p style="font-size:2px">
+  <br>
+  <h1>Every Poke is crafted with love and care, just for you!
+  
+  
+  <br>
+     <br> </h1>
+   <img src="pk_1.png" class="imagen-hover" >
+</p>
+<br> Need to fill your Pokédex? Tournaments? I’ll get you the Pokes you’re missing! :3
+  <br> 
+  <img src="pokedex.jpg" class="imagen-hover"  >
+</h1>
+<br> 
+  <br> Any generation, I’ve got you covered
+  <br> 
+  <img src="a1.jpg" class="imagen-hover"  >
+  <br> 
+  <img src="a2.jpg" class="imagen-hover"  >
+  <br> 
+  <img src="a3.jpg" class="imagen-hover"  >
+  <br> 
+  <img src="a4.jpg" class="imagen-hover"  >
+  <p> Ask for your Pokes quote—totally free, no commitment :'3 </p>
+<a href="https://wa.me/5215512345678" target="_blank">
+  Hit me up on WhatsApp for your Pokes order. ONLY PayPal payment accepted! 
+</a>
+      <p> </p>
+  <a href="https://www.ebay.com/p/215784361" target="_blank">
+   Or buy directly from my eBay account <3 
+                       </a>
+            <br>
+ <p> Important notice:
+ </p>
+  <br>
+  <img src="Lika1.png" >
+  <br>
+  <p> This is strictly a Pokes service =3. No chit-chat, no friendship, no extras—respect the rules or risk a block! , please n.nu </p>
+   <br>
+   <br>
+  </div>
+  </body>
+</html>
