@@ -8,6 +8,22 @@
     .producto { margin: 20px; padding: 10px; background: #fff; border: 1px solid #ccc; display: inline-block; }
     img { width: 200px; }
     a { color: #0077cc; font-weight: bold; text-decoration: none; }
+
+
+  <style>
+    .imagen-hover {
+      width: 200px;          /* tamaño inicial */
+      transition: transform 0.3s ease; /* animación suave */
+      cursor: pointer;       /* cambia el cursor */
+    }
+
+    .imagen-hover:hover {
+      transform: scale(2);   /* agranda al pasar el mouse */
+    }
+    
+
+
+     
   </style>
 </head>
 <body>
@@ -27,7 +43,7 @@
 </p>
 <br> Te ayudo a completar tu Pokedex :3
   <br> 
-  <img src="pokedex.jpg">
+  <img src="pokedex.jpg" class="imagen-hover"  >
 </h1>
 <br> 
   <br> No importa la generación de Pokemon 
