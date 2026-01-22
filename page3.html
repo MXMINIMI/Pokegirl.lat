@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda Pokémon — Encanto y Competencia</title>
+  <meta name="description" content="Pokémon competitivos y shiny, verificados y listos para torneo, con un toque femenino." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#FFF8F2; --text:#1F2937; --muted:#6B7280;
+      --rose:#F4A6C0; --lilac:#C7A4F8; --mint:#8EE5D1;
+      --card:#FFFFFF; --shadow:0 10px 30px rgba(31,41,55,.08);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text)}
+    header{position:sticky; top:0; background:rgba(255,255,255,.85); backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid rgba(31,41,55,.08); z-index:10}
+    .wrap{max-width:1100px; margin:0 auto; padding:16px}
+    nav{display:flex; align-items:center; justify-content:space-between}
+    .brand{font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.3px}
+    .brand span{color:var(--rose)}
+    .links a{color:var(--muted); text-decoration:none; margin-left:18px}
+    .links a:hover{color:var(--text)}
+    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; padding:40px 16px}
+    .title{font-family:"Playfair Display",serif; font-size:clamp(28px,4vw,48px); line-height:1.1; margin:0 0 12px}
+    .lead{color:var(--muted); font-size:clamp(16px,2vw,18px)}
+    .cta{display:flex; gap:12px; margin-top:18px}
+    .btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(31,41,55,.12); background:var(--rose); color:#fff; font-weight:600}
+    .btn.secondary{background:transparent; color:var(--text)}
+    .card{background:var(--card); border:1px solid rgba(31,41,55,.08); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .svg-hero{width:100%; aspect-ratio:4/3; border-radius:var(--radius); overflow:hidden; position:relative;
+      background: radial-gradient(120% 120% at 0% 0%, var(--rose) 0%, var(--lilac) 40%, var(--bg) 100%);
+    }
+    .svg-hero::after{content:""; position:absolute; inset:0;
+      background: radial-gradient(200px 200px at 20% 30%, rgba(255,255,255,.35), transparent 60%),
+                  radial-gradient(160px 160px at 70% 60%, rgba(142,229,209,.35), transparent 60%);
+      mix-blend-mode:screen;
+    }
+    .section{padding:24px 16px}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+    .product{padding:14px; display:flex; flex-direction:column}
+    .product .img{width:100%; aspect-ratio:1/1; border-radius:12px; background:
+      linear-gradient(135deg, #fff 0%, #FFE6EF 60%, #F4A6C0 100%);
+      position:relative; overflow:hidden;
+    }
+    .badge{position:absolute; top:10px; left:10px; background:#1F2937; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px}
+    .product h3{margin:12px 0 6px; font-size:18px}
+    .meta{color:var(--muted); font-size:14px}
+    .price{margin-top:8px; font-weight:600}
+    .actions{display:flex; gap:10px; margin-top:12px}
+    .pill{padding:8px 12px; border-radius:999px; border:1px solid rgba(31,41,55,.12); background:#fff}
+    .trust{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+    .trust .item{padding:18px}
+    footer{padding:28px 16px; color:var(--muted)}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:1fr 1fr} .trust{grid-template-columns:1fr} }
+    @media (max-width:600px){ .grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Principal">
+        <div class="brand">Encanto <span>Pokémon</span></div>
+        <div class="links">
+          <a href="#catalogo">Catálogo</a>
+          <a href="#como">Cómo trabajamos</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap hero">
+      <div>
+        <h1 class="title">Pokémon competitivos con un toque femenino</h1>
+        <p class="lead">Verificados, legales y listos para torneo. Personaliza idioma, OT y detalles—entrega rápida y soporte cercano.</p>
+        <div class="cta">
+          <a class="btn" href="#catalogo">Explorar catálogo</a>
+          <a class="btn secondary" href="#como">Ver legalidad</a>
+        </div>
+      </div>
+      <div class="svg-hero" role="img" aria-label="Fondo suave con gradientes rosa y lila"></div>
+    </section>
+
+    <section id="catalogo" class="wrap section">
+      <h2>Destacados</h2>
+      <div class="grid">
+        <!-- Producto 1 -->
+        <article class="card product" aria-labelledby="p1">
+          <div class="img" role="img" aria-label="Pokémon competitivo — placeholder">
+            <span class="badge" title="Legal para torneos">Legal</span>
+          </div>
+          <h3 id="p1">Garchomp — Competitivo</h3>
+          <p class="meta">Naturaleza Jolly · EVs 252 Atk / 252 Spe · Habilidad Rough Skin</p>
+          <p class="price">$—</p>
+          <div class="actions">
+            <button class="pill">Detalles</button>
+            <button class="pill">Agregar</button>
+          </div>
+        </article>
+        <!-- Producto 2 -->
+        <article class="card product" aria-labelledby="p2">
+          <div class="img" role="img" aria-label="Pokémon shiny — placeholder">
+            <span class="badge" title="Shiny verificado">Shiny</span>
+          </div>
+          <h3 id="p2">Sylveon — Shiny</h3>
+          <p class="meta">Naturaleza Modest · EVs 252 SpA / 252 HP · Habilidad Pixilate</p>
+          <p class="price">$—</p>
+          <div class="actions">
+            <button class="pill">Detalles</button>
+            <button class="pill">Agregar</button>
+          </div>
+        </article>
+        <!-- Producto 3 -->
+        <article class="card product" aria-labelledby="p3">
+          <div class="img" role="img" aria-label="Pokémon de evento — placeholder">
+            <span class="badge" title="Evento">Evento</span>
+          </div>
+          <h3 id="p3">Mew — Evento</h3>
+          <p class="meta">OT personalizado · Moveset a elección · Entrega 24–48 h</p>
+          <p class="price">$—</p>
+          <div class="actions">
+            <button class="pill">Detalles</button>
+            <button class="pill">Agregar</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="como" class="wrap section card">
+      <div class="trust">
+        <div class="item">
+          <h3>Legalidad y cumplimiento</h3>
+          <p>Todos los parámetros se revisan para cumplir con reglas de torneo. Si algo no cuadra, lo ajustamos sin costo.</p>
+        </div>
+        <div class="item">
+          <h3>Proceso de entrega</h3>
+          <p>Coordinamos horario, idioma y OT. Entrega segura en 24–48 h según volumen.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="wrap section">
+      <h2>¿Listas para tu equipo?</h2>
+      <p>Escríbenos y armamos tu pedido con cariño y precisión.</p>
+      <div class="cta">
+        <a class="btn" href="#">Pedir ahora</a>
+        <a class="btn secondary" href="#">Ver FAQ</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <p>© Encanto Pokémon — Atención cercana y verificación técnica.</p>
+  </footer>
+
+  <script>
+    // Ejemplo: abrir modal de detalles (placeholder)
+    document.querySelectorAll('.product .pill:first-child').forEach(btn=>{
+      btn.addEventListener('click', ()=> alert('Aquí iría el modal con stats, IV/EV, movimientos y opciones.'));
+    });
+  </script>
+</body>
+</html>
