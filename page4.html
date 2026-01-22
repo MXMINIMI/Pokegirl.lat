@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Tienda Pokémon con Calculadoras</title>
+  <style>
+    body{margin:0; font-family:Inter, sans-serif; background:#FFF8F2; color:#1F2937;}
+    .main{display:flex;}
+    .content{flex:1; padding:20px;}
+    .sidebar{
+      width:320px; background:#F4A6C0; color:#fff; padding:20px;
+      position:sticky; top:0; height:100vh; overflow-y:auto;
+    }
+    h2{margin-top:0; font-family:"Playfair Display", serif;}
+    .calc{background:#fff; color:#1F2937; padding:15px; border-radius:12px; margin-bottom:20px;}
+    .calc h3{margin-top:0; color:#C7A4F8;}
+    label{display:block; margin:8px 0 4px;}
+    input{width:100%; padding:8px; border:1px solid #ddd; border-radius:8px;}
+    button{margin-top:10px; padding:10px; border:none; border-radius:8px; background:#C7A4F8; color:#fff; font-weight:600;}
+    .result{margin-top:10px; font-weight:600; color:#8EE5D1;}
+  </style>
+</head>
+<body>
+  <div class="main">
+    <div class="content">
+      <h1>Tienda Pokémon</h1>
+      <p>Aquí va tu catálogo y productos...</p>
+    </div>
+    <aside class="sidebar">
+      <h2>Calculadoras</h2>
+
+      <!-- IV Calculator -->
+      <div class="calc" id="ivCalc">
+        <h3>IV Calculator</h3>
+        <label for="stat">Stat observado:</label>
+        <input type="number" id="stat" placeholder="Ej. 120">
+        <label for="base">Base stat:</label>
+        <input type="number" id="base" placeholder="Ej. 100">
+        <label for="level">Nivel:</label>
+        <input type="number" id="level" placeholder="Ej. 50">
+        <button onclick="calcIV()">Calcular IV</button>
+        <div class="result" id="ivResult"></div>
+      </div>
+
+      <!-- EV Calculator -->
+      <div class="calc" id="evCalc">
+        <h3>EV Calculator</h3>
+        <label for="desiredStat">Stat deseado:</label>
+        <input type="number" id="desiredStat" placeholder="Ej. 200">
+        <label for="baseStat">Base stat:</label>
+        <input type="number" id="baseStat" placeholder="Ej. 100">
+        <label for="levelEv">Nivel:</label>
+        <input type="number" id="levelEv" placeholder="Ej. 50">
+        <button onclick="calcEV()">Calcular EV</button>
+        <div class="result" id="evResult"></div>
+      </div>
+
+      <!-- Level Calculator -->
+      <div class="calc" id="levelCalc">
+        <h3>Level Calculator</h3>
+        <label for="exp">Experiencia actual:</label>
+        <input type="number" id="exp" placeholder="Ej. 5000">
+        <button onclick="calcLevel()">Calcular Nivel</button>
+        <div class="result" id="levelResult"></div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    function calcIV(){
+      let stat = parseInt(document.getElementById('stat').value);
+      let base = parseInt(document.getElementById('base').value);
+      let level = parseInt(document.getElementById('level').value);
+      if(isNaN(stat)||isNaN(base)||isNaN(level)){return;}
+      // Fórmula simplificada para demo
+      let iv = Math.round(((stat - base) * 100) / level);
+      document.getElementById('ivResult').innerText = "IV estimado: " + iv;
+    }
+
+    function calcEV(){
+      let desired = parseInt(document.getElementById('desiredStat').value);
+      let base = parseInt(document.getElementById('baseStat').value);
+      let level = parseInt(document.getElementById('levelEv').value);
+      if(isNaN(desired)||isNaN(base)||isNaN(level)){return;}
+      // Fórmula simplificada para demo
+      let ev = Math.round(((desired - base) * 4) / level);
+      document.getElementById('evResult').innerText = "EV necesario: " + ev;
+    }
+
+    function calcLevel(){
+      let exp = parseInt(document.getElementById('exp').value);
+      if(isNaN(exp)){return;}
+      // Fórmula simplificada: nivel = raíz cuadrada de exp/10
+      let level = Math.floor(Math.sqrt(exp/10));
+      document.getElementById('levelResult').innerText = "Nivel estimado: " + level;
+    }
+  </script>
+</body>
+</html>
