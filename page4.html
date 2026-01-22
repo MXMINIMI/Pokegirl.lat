@@ -157,19 +157,21 @@
 
       <!-- Parámetros base -->
       <div class="panel">
-        <h3>Parámetros base</h3>
-        <label for="level">Nivel</label>
-        <input type="number" id="level" min="1" max="100" value="50">
-        <div class="row">
-          <div>
-            <label for="nature">Naturaleza</label>
-            <select id="nature">
-              <option value="1">Neutral</option>
-              <option value="1.1">Aumenta (x1.1)</option>
-              <option value="0.9">Disminuye (x0.9)</option>
-            </select>
-          </div>
-          <div>
+<div class="panel">
+  <h3>Base IVs</h3>
+  <label for="ivHP">HP</label>
+  <input type="number" id="ivHP" min="0" max="31" value="31">
+  <label for="ivAtk">Atk</label>
+  <input type="number" id="ivAtk" min="0" max="31" value="31">
+  <label for="ivDef">Def</label>
+  <input type="number" id="ivDef" min="0" max="31" value="31">
+  <label for="ivSpA">SpA</label>
+  <input type="number" id="ivSpA" min="0" max="31" value="31">
+  <label for="ivSpD">SpD</label>
+  <input type="number" id="ivSpD" min="0" max="31" value="31">
+  <label for="ivSpd">Spd</label>
+  <input type="number" id="ivSpd" min="0" max="31" value="31">
+</div>
             <label for="baseHP">Base HP</label>
             <input type="number" id="baseHP" value="95">
           </div>
