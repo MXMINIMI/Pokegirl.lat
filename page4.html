@@ -1,98 +1,447 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>Tienda Pokémon con Calculadoras</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda Pokémon — Calculadoras y atributos</title>
+  <meta name="description" content="Catálogo con calculadoras de IV, EV y Level, selección de Ball, Shiny y Alpha." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    body{margin:0; font-family:Inter, sans-serif; background:#FFF8F2; color:#1F2937;}
-    .main{display:flex;}
-    .content{flex:1; padding:20px;}
-    .sidebar{
-      width:320px; background:#F4A6C0; color:#fff; padding:20px;
-      position:sticky; top:0; height:100vh; overflow-y:auto;
+    :root{
+      --bg:#FFF8F2; --text:#1F2937; --muted:#6B7280;
+      --rose:#F4A6C0; --lilac:#C7A4F8; --mint:#8EE5D1;
+      --card:#FFFFFF; --shadow:0 10px 30px rgba(31,41,55,.08);
+      --radius:16px;
     }
-    h2{margin-top:0; font-family:"Playfair Display", serif;}
-    .calc{background:#fff; color:#1F2937; padding:15px; border-radius:12px; margin-bottom:20px;}
-    .calc h3{margin-top:0; color:#C7A4F8;}
-    label{display:block; margin:8px 0 4px;}
-    input{width:100%; padding:8px; border:1px solid #ddd; border-radius:8px;}
-    button{margin-top:10px; padding:10px; border:none; border-radius:8px; background:#C7A4F8; color:#fff; font-weight:600;}
-    .result{margin-top:10px; font-weight:600; color:#8EE5D1;}
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text)}
+    header{position:sticky; top:0; background:rgba(255,255,255,.85); backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid rgba(31,41,55,.08); z-index:10}
+    .wrap{max-width:1200px; margin:0 auto; padding:16px}
+    nav{display:flex; align-items:center; justify-content:space-between}
+    .brand{font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.3px}
+    .brand span{color:var(--rose)}
+    .links a{color:var(--muted); text-decoration:none; margin-left:18px}
+    .links a:hover{color:var(--text)}
+
+    /* Layout principal */
+    .main{display:grid; grid-template-columns:1fr 360px; gap:24px; align-items:start; padding:24px 16px}
+    .content .hero{background:var(--card); border:1px solid rgba(31,41,55,.08); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px}
+    .title{font-family:"Playfair Display",serif; font-size:clamp(28px,4vw,44px); margin:0 0 8px}
+    .lead{color:var(--muted)}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
+    .product{background:var(--card); border:1px solid rgba(31,41,55,.08); border-radius:14px; box-shadow:var(--shadow); padding:14px}
+    .product .img{width:100%; aspect-ratio:1/1; border-radius:12px; background:
+      linear-gradient(135deg, #fff 0%, #FFE6EF 60%, #F4A6C0 100%);
+      position:relative; overflow:hidden;
+    }
+    .badge{position:absolute; top:10px; left:10px; background:#1F2937; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px}
+    .product h3{margin:12px 0 6px; font-size:18px}
+    .meta{color:var(--muted); font-size:14px}
+    .actions{display:flex; gap:10px; margin-top:12px}
+    .pill{padding:8px 12px; border-radius:999px; border:1px solid rgba(31,41,55,.12); background:#fff}
+
+    /* Sidebar */
+    aside.sidebar{
+      position:sticky; top:84px; height:calc(100vh - 100px); overflow:auto;
+      background:linear-gradient(180deg, #FFE6EF 0%, #F4A6C0 40%, #C7A4F8 100%);
+      border-radius:18px; box-shadow:var(--shadow); color:#fff; padding:16px;
+    }
+    .side-title{font-family:"Playfair Display",serif; margin:0 0 12px}
+    .panel{background:#fff; color:var(--text); border-radius:14px; padding:14px; margin-bottom:14px; border:1px solid rgba(31,41,55,.08)}
+    .panel h3{margin:0 0 8px; color:#C7A4F8}
+    label{display:block; font-size:13px; color:var(--muted); margin:8px 0 4px}
+    input, select{width:100%; padding:8px; border:1px solid #e5e7eb; border-radius:10px; font-size:14px}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .btn{width:100%; padding:10px; border:none; border-radius:10px; background:#C7A4F8; color:#fff; font-weight:600; margin-top:10px}
+    .result{margin-top:8px; font-weight:600; color:#8EE5D1}
+    .toggle{display:flex; align-items:center; gap:8px; margin-top:8px}
+    .toggle input{width:auto}
+
+    /* Responsive */
+    @media (max-width:1000px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:800px){ .main{grid-template-columns:1fr} aside.sidebar{position:relative; top:auto; height:auto} .grid{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
-  <div class="main">
-    <div class="content">
-      <h1>Tienda Pokémon</h1>
-      <p>Aquí va tu catálogo y productos...</p>
+  <header>
+    <div class="wrap">
+      <nav aria-label="Principal">
+        <div class="brand">Encanto <span>Pokémon</span></div>
+        <div class="links">
+          <a href="#catalogo">Catálogo</a>
+          <a href="#calculadoras">Calculadoras</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </nav>
     </div>
-    <aside class="sidebar">
-      <h2>Calculadoras</h2>
+  </header>
 
-      <!-- IV Calculator -->
-      <div class="calc" id="ivCalc">
+  <div class="wrap main">
+    <!-- Contenido principal -->
+    <section class="content">
+      <div class="hero">
+        <h1 class="title">Pokémon competitivos con calculadoras integradas</h1>
+        <p class="lead">Ajusta IV, EV, nivel, ball y estado shiny/alpha desde la columna derecha. Resultados con fórmulas oficiales.</p>
+      </div>
+
+      <section id="catalogo" style="margin-top:18px">
+        <h2>Destacados</h2>
+        <div class="grid">
+          <article class="product">
+            <div class="img" role="img" aria-label="Placeholder Pokémon">
+              <span class="badge">Legal</span>
+            </div>
+            <h3>Sylveon — Shiny</h3>
+            <p class="meta">Modest · Pixilate · EVs 252 SpA / 252 HP</p>
+            <div class="actions">
+              <button class="pill">Detalles</button>
+              <button class="pill">Agregar</button>
+            </div>
+          </article>
+          <article class="product">
+            <div class="img" role="img" aria-label="Placeholder Pokémon">
+              <span class="badge">Competitivo</span>
+            </div>
+            <h3>Garchomp — Jolly</h3>
+            <p class="meta">Rough Skin · EVs 252 Atk / 252 Spe</p>
+            <div class="actions">
+              <button class="pill">Detalles</button>
+              <button class="pill">Agregar</button>
+            </div>
+          </article>
+          <article class="product">
+            <div class="img" role="img" aria-label="Placeholder Pokémon">
+              <span class="badge">Evento</span>
+            </div>
+            <h3>Mew — OT personalizado</h3>
+            <p class="meta">Moveset a elección · Entrega 24–48 h</p>
+            <div class="actions">
+              <button class="pill">Detalles</button>
+              <button class="pill">Agregar</button>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <!-- Sidebar con calculadoras y atributos -->
+    <aside class="sidebar" id="calculadoras" aria-label="Calculadoras y atributos">
+      <h2 class="side-title">Calculadoras</h2>
+
+      <!-- Atributos: Ball, Shiny, Alpha -->
+      <div class="panel">
+        <h3>Atributos rápidos</h3>
+        <label for="ball">Ball</label>
+        <select id="ball">
+          <option>Poke Ball</option>
+          <option>Premier Ball</option>
+          <option>Luxury Ball</option>
+          <option>Love Ball</option>
+          <option>Moon Ball</option>
+          <option>Friend Ball</option>
+          <option>Beast Ball</option>
+          <option>Master Ball</option>
+        </select>
+        <div class="toggle">
+          <input type="checkbox" id="shiny">
+          <label for="shiny">Shiny</label>
+        </div>
+        <div class="toggle">
+          <input type="checkbox" id="alpha">
+          <label for="alpha">Alpha</label>
+        </div>
+        <div class="result" id="attrResult">Ball: Poke Ball · Shiny: No · Alpha: No</div>
+      </div>
+
+      <!-- Parámetros base -->
+      <div class="panel">
+        <h3>Parámetros base</h3>
+        <label for="level">Nivel</label>
+        <input type="number" id="level" min="1" max="100" value="50">
+        <div class="row">
+          <div>
+            <label for="nature">Naturaleza</label>
+            <select id="nature">
+              <option value="1">Neutral</option>
+              <option value="1.1">Aumenta (x1.1)</option>
+              <option value="0.9">Disminuye (x0.9)</option>
+            </select>
+          </div>
+          <div>
+            <label for="baseHP">Base HP</label>
+            <input type="number" id="baseHP" value="95">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="baseAtk">Base Atk</label>
+            <input type="number" id="baseAtk" value="65">
+          </div>
+          <div>
+            <label for="baseDef">Base Def</label>
+            <input type="number" id="baseDef" value="65">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="baseSpA">Base SpA</label>
+            <input type="number" id="baseSpA" value="110">
+          </div>
+          <div>
+            <label for="baseSpD">Base SpD</label>
+            <input type="number" id="baseSpD" value="130">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="baseSpe">Base Spe</label>
+            <input type="number" id="baseSpe" value="60">
+          </div>
+          <div>
+            <label for="ivAll">IV (global)</label>
+            <input type="number" id="ivAll" min="0" max="31" value="31">
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label for="evAll">EV (global)</label>
+            <input type="number" id="evAll" min="0" max="252" value="0">
+          </div>
+          <div>
+            <button class="btn" id="previewStats">Previsualizar stats</button>
+          </div>
+        </div>
+        <div class="result" id="previewResult">HP/Atk/Def/SpA/SpD/Spe: —</div>
+      </div>
+
+      <!-- IV Calculator (inversión de fórmula) -->
+      <div class="panel">
         <h3>IV Calculator</h3>
-        <label for="stat">Stat observado:</label>
-        <input type="number" id="stat" placeholder="Ej. 120">
-        <label for="base">Base stat:</label>
-        <input type="number" id="base" placeholder="Ej. 100">
-        <label for="level">Nivel:</label>
-        <input type="number" id="level" placeholder="Ej. 50">
-        <button onclick="calcIV()">Calcular IV</button>
-        <div class="result" id="ivResult"></div>
+        <label for="ivStatSelect">Stat</label>
+        <select id="ivStatSelect">
+          <option value="HP">HP</option>
+          <option value="Atk">Atk</option>
+          <option value="Def">Def</option>
+          <option value="SpA">SpA</option>
+          <option value="SpD">SpD</option>
+          <option value="Spe">Spe</option>
+        </select>
+        <label for="observedStat">Stat observado</label>
+        <input type="number" id="observedStat" placeholder="Ej. 202">
+        <label for="evForIV">EV asignado</label>
+        <input type="number" id="evForIV" min="0" max="252" value="0">
+        <button class="btn" id="btnCalcIV">Calcular IV</button>
+        <div class="result" id="ivResult">IV estimado: —</div>
       </div>
 
-      <!-- EV Calculator -->
-      <div class="calc" id="evCalc">
+      <!-- EV Calculator (inversión de fórmula) -->
+      <div class="panel">
         <h3>EV Calculator</h3>
-        <label for="desiredStat">Stat deseado:</label>
-        <input type="number" id="desiredStat" placeholder="Ej. 200">
-        <label for="baseStat">Base stat:</label>
-        <input type="number" id="baseStat" placeholder="Ej. 100">
-        <label for="levelEv">Nivel:</label>
-        <input type="number" id="levelEv" placeholder="Ej. 50">
-        <button onclick="calcEV()">Calcular EV</button>
-        <div class="result" id="evResult"></div>
+        <label for="evStatSelect">Stat</label>
+        <select id="evStatSelect">
+          <option value="HP">HP</option>
+          <option value="Atk">Atk</option>
+          <option value="Def">Def</option>
+          <option value="SpA">SpA</option>
+          <option value="SpD">SpD</option>
+          <option value="Spe">Spe</option>
+        </select>
+        <label for="targetStat">Stat objetivo</label>
+        <input type="number" id="targetStat" placeholder="Ej. 200">
+        <label for="ivForEV">IV</label>
+        <input type="number" id="ivForEV" min="0" max="31" value="31">
+        <button class="btn" id="btnCalcEV">Calcular EV</button>
+        <div class="result" id="evResult">EV necesario: —</div>
       </div>
 
-      <!-- Level Calculator -->
-      <div class="calc" id="levelCalc">
+      <!-- Level Calculator (stats a nivel N) -->
+      <div class="panel">
         <h3>Level Calculator</h3>
-        <label for="exp">Experiencia actual:</label>
-        <input type="number" id="exp" placeholder="Ej. 5000">
-        <button onclick="calcLevel()">Calcular Nivel</button>
-        <div class="result" id="levelResult"></div>
+        <label for="levelCheck">Nivel</label>
+        <input type="number" id="levelCheck" min="1" max="100" value="50">
+        <label for="natureCheck">Naturaleza</label>
+        <select id="natureCheck">
+          <option value="1">Neutral</option>
+          <option value="1.1">Aumenta (x1.1)</option>
+          <option value="0.9">Disminuye (x0.9)</option>
+        </select>
+        <div class="row">
+          <div>
+            <label for="ivCheck">IV (global)</label>
+            <input type="number" id="ivCheck" min="0" max="31" value="31">
+          </div>
+          <div>
+            <label for="evCheck">EV (global)</label>
+            <input type="number" id="evCheck" min="0" max="252" value="0">
+          </div>
+        </div>
+        <button class="btn" id="btnLevelStats">Calcular stats al nivel</button>
+        <div class="result" id="levelResult">HP/Atk/Def/SpA/SpD/Spe: —</div>
       </div>
     </aside>
   </div>
 
+  <footer class="wrap" id="contacto" style="padding-bottom:28px; color:var(--muted)">
+    © Encanto Pokémon — Legalidad verificada y atención cercana.
+  </footer>
+
   <script>
-    function calcIV(){
-      let stat = parseInt(document.getElementById('stat').value);
-      let base = parseInt(document.getElementById('base').value);
-      let level = parseInt(document.getElementById('level').value);
-      if(isNaN(stat)||isNaN(base)||isNaN(level)){return;}
-      // Fórmula simplificada para demo
-      let iv = Math.round(((stat - base) * 100) / level);
-      document.getElementById('ivResult').innerText = "IV estimado: " + iv;
+    // Utilidades de cálculo (fórmulas oficiales de stats)
+    // HP: floor( ((2*Base + IV + floor(EV/4)) * Level / 100) ) + Level + 10
+    // Otros: floor( ( floor( ((2*Base + IV + floor(EV/4)) * Level / 100) ) + 5 ) * Nature )
+    function calcHP(base, iv, ev, level){
+      return Math.floor(((2*base + iv + Math.floor(ev/4)) * level) / 100) + level + 10;
+    }
+    function calcStat(base, iv, ev, level, nature){
+      const pre = Math.floor(((2*base + iv + Math.floor(ev/4)) * level) / 100) + 5;
+      return Math.floor(pre * nature);
     }
 
-    function calcEV(){
-      let desired = parseInt(document.getElementById('desiredStat').value);
-      let base = parseInt(document.getElementById('baseStat').value);
-      let level = parseInt(document.getElementById('levelEv').value);
-      if(isNaN(desired)||isNaN(base)||isNaN(level)){return;}
-      // Fórmula simplificada para demo
-      let ev = Math.round(((desired - base) * 4) / level);
-      document.getElementById('evResult').innerText = "EV necesario: " + ev;
+    // Atributos rápidos: Ball, Shiny, Alpha
+    const ballSel = document.getElementById('ball');
+    const shinyChk = document.getElementById('shiny');
+    const alphaChk = document.getElementById('alpha');
+    const attrResult = document.getElementById('attrResult');
+    function updateAttrs(){
+      attrResult.textContent = `Ball: ${ballSel.value} · Shiny: ${shinyChk.checked ? 'Sí' : 'No'} · Alpha: ${alphaChk.checked ? 'Sí' : 'No'}`;
     }
+    [ballSel, shinyChk, alphaChk].forEach(el => el.addEventListener('change', updateAttrs));
+    updateAttrs();
 
-    function calcLevel(){
-      let exp = parseInt(document.getElementById('exp').value);
-      if(isNaN(exp)){return;}
-      // Fórmula simplificada: nivel = raíz cuadrada de exp/10
-      let level = Math.floor(Math.sqrt(exp/10));
-      document.getElementById('levelResult').innerText = "Nivel estimado: " + level;
+    // Previsualización de stats con parámetros base
+    const levelInput = document.getElementById('level');
+    const natureInput = document.getElementById('nature');
+    const baseHP = document.getElementById('baseHP');
+    const baseAtk = document.getElementById('baseAtk');
+    const baseDef = document.getElementById('baseDef');
+    const baseSpA = document.getElementById('baseSpA');
+    const baseSpD = document.getElementById('baseSpD');
+    const baseSpe = document.getElementById('baseSpe');
+    const ivAll = document.getElementById('ivAll');
+    const evAll = document.getElementById('evAll');
+    const previewBtn = document.getElementById('previewStats');
+    const previewResult = document.getElementById('previewResult');
+
+    previewBtn.addEventListener('click', ()=>{
+      const L = clamp(parseInt(levelInput.value),1,100);
+      const N = parseFloat(natureInput.value);
+      const IV = clamp(parseInt(ivAll.value),0,31);
+      const EV = clamp(parseInt(evAll.value),0,252);
+
+      const hp  = calcHP (parseInt(baseHP.value),  IV, EV, L);
+      const atk = calcStat(parseInt(baseAtk.value), IV, EV, L, N);
+      const def = calcStat(parseInt(baseDef.value), IV, EV, L, N);
+      const spa = calcStat(parseInt(baseSpA.value), IV, EV, L, N);
+      const spd = calcStat(parseInt(baseSpD.value), IV, EV, L, N);
+      const spe = calcStat(parseInt(baseSpe.value), IV, EV, L, N);
+
+      previewResult.textContent = `HP/Atk/Def/SpA/SpD/Spe: ${hp}/${atk}/${def}/${spa}/${spd}/${spe}`;
+    });
+
+    // IV Calculator: invertir fórmula para estimar IV dado stat observado
+    const ivStatSelect = document.getElementById('ivStatSelect');
+    const observedStat = document.getElementById('observedStat');
+    const evForIV = document.getElementById('evForIV');
+    const btnCalcIV = document.getElementById('btnCalcIV');
+    const ivResult = document.getElementById('ivResult');
+
+    btnCalcIV.addEventListener('click', ()=>{
+      const statName = ivStatSelect.value;
+      const obs = parseInt(observedStat.value);
+      const EV = clamp(parseInt(evForIV.value),0,252);
+      const L = clamp(parseInt(levelInput.value),1,100);
+      const N = parseFloat(natureInput.value);
+
+      if(isNaN(obs)){ ivResult.textContent = 'IV estimado: —'; return; }
+
+      let base = getBase(statName);
+      let iv;
+      if(statName === 'HP'){
+        // obs = floor(((2*base + iv + floor(EV/4)) * L)/100) + L + 10
+        // Aproximación inversa: iv ≈ ceil( ( (obs - L - 10) * 100 / L ) - 2*base - floor(EV/4) )
+        iv = Math.ceil( ((obs - L - 10) * 100 / L) - 2*base - Math.floor(EV/4) );
+      }else{
+        // obs = floor( ( floor(((2*base + iv + floor(EV/4)) * L)/100) + 5 ) * N )
+        // Invertimos aproximando: pre ≈ ceil(obs / N) - 5
+        // iv ≈ ceil( ( pre*100 / L ) - 2*base - floor(EV/4) )
+        const pre = Math.ceil(obs / N) - 5;
+        iv = Math.ceil( (pre * 100 / L) - 2*base - Math.floor(EV/4) );
+      }
+      iv = clamp(iv,0,31);
+      ivResult.textContent = `IV estimado: ${iv}`;
+    });
+
+    // EV Calculator: estimar EV para alcanzar un stat objetivo con IV dado
+    const evStatSelect = document.getElementById('evStatSelect');
+    const targetStat = document.getElementById('targetStat');
+    const ivForEV = document.getElementById('ivForEV');
+    const btnCalcEV = document.getElementById('btnCalcEV');
+    const evResult = document.getElementById('evResult');
+
+    btnCalcEV.addEventListener('click', ()=>{
+      const statName = evStatSelect.value;
+      const target = parseInt(targetStat.value);
+      const IV = clamp(parseInt(ivForEV.value),0,31);
+      const L = clamp(parseInt(levelInput.value),1,100);
+      const N = parseFloat(natureInput.value);
+
+      if(isNaN(target)){ evResult.textContent = 'EV necesario: —'; return; }
+
+      let base = getBase(statName);
+      let ev;
+      if(statName === 'HP'){
+        // target = floor(((2*base + IV + floor(EV/4)) * L)/100) + L + 10
+        // Aproximación inversa: floor(EV/4) ≈ ceil( ( (target - L - 10) * 100 / L ) - 2*base - IV )
+        const quarter = Math.ceil( ((target - L - 10) * 100 / L) - 2*base - IV );
+        ev = clamp(quarter * 4, 0, 252);
+      }else{
+        // target = floor( ( floor(((2*base + IV + floor(EV/4)) * L)/100) + 5 ) * N )
+        // pre ≈ ceil(target / N) - 5
+        const pre = Math.ceil(target / N) - 5;
+        const quarter = Math.ceil( (pre * 100 / L) - 2*base - IV );
+        ev = clamp(quarter * 4, 0, 252);
+      }
+      evResult.textContent = `EV necesario: ${ev}`;
+    });
+
+    // Level Calculator: stats al nivel elegido (usa bases del panel de parámetros)
+    const levelCheck = document.getElementById('levelCheck');
+    const natureCheck = document.getElementById('natureCheck');
+    const ivCheck = document.getElementById('ivCheck');
+    const evCheck = document.getElementById('evCheck');
+    const btnLevelStats = document.getElementById('btnLevelStats');
+    const levelResult = document.getElementById('levelResult');
+
+    btnLevelStats.addEventListener('click', ()=>{
+      const L = clamp(parseInt(levelCheck.value),1,100);
+      const N = parseFloat(natureCheck.value);
+      const IV = clamp(parseInt(ivCheck.value),0,31);
+      const EV = clamp(parseInt(evCheck.value),0,252);
+
+      const hp  = calcHP (parseInt(baseHP.value),  IV, EV, L);
+      const atk = calcStat(parseInt(baseAtk.value), IV, EV, L, N);
+      const def = calcStat(parseInt(baseDef.value), IV, EV, L, N);
+      const spa = calcStat(parseInt(baseSpA.value), IV, EV, L, N);
+      const spd = calcStat(parseInt(baseSpD.value), IV, EV, L, N);
+      const spe = calcStat(parseInt(baseSpe.value), IV, EV, L, N);
+
+      levelResult.textContent = `HP/Atk/Def/SpA/SpD/Spe: ${hp}/${atk}/${def}/${spa}/${spd}/${spe}`;
+    });
+
+    // Helpers
+    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+    function getBase(statName){
+      switch(statName){
+        case 'HP':  return parseInt(baseHP.value);
+        case 'Atk': return parseInt(baseAtk.value);
+        case 'Def': return parseInt(baseDef.value);
+        case 'SpA': return parseInt(baseSpA.value);
+        case 'SpD': return parseInt(baseSpD.value);
+        case 'Spe': return parseInt(baseSpe.value);
+        default: return 0;
+      }
     }
   </script>
 </body>
