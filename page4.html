@@ -209,92 +209,73 @@
   <label for="ivSpd">Spd</label>
   <input type="number" id="ivSpd" min="0" max="31" value="31">
 </div>
-            <label for="baseHP">Base HP</label>
-            <input type="number" id="baseHP" value="95">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="baseAtk">Base Atk</label>
-            <input type="number" id="baseAtk" value="65">
-          </div>
-          <div>
-            <label for="baseDef">Base Def</label>
-            <input type="number" id="baseDef" value="65">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="baseSpA">Base SpA</label>
-            <input type="number" id="baseSpA" value="110">
-          </div>
-          <div>
-            <label for="baseSpD">Base SpD</label>
-            <input type="number" id="baseSpD" value="130">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="baseSpe">Base Spe</label>
-            <input type="number" id="baseSpe" value="60">
-          </div>
-          <div>
-            <label for="ivAll">IV (global)</label>
-            <input type="number" id="ivAll" min="0" max="31" value="31">
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label for="evAll">EV (global)</label>
-            <input type="number" id="evAll" min="0" max="252" value="0">
-          </div>
-          <div>
-            <button class="btn" id="previewStats">Previsualizar stats</button>
-          </div>
-        </div>
-        <div class="result" id="previewResult">HP/Atk/Def/SpA/SpD/Spe: —</div>
-      </div>
+<aside class="sidebar" id="baseivs" aria-label="Base IVs">
+  <h2 class="side-title">Base IVs</h2>
+  <div class="panel">
+    <h3>Distribución de IVs (0–31)</h3>
+    <label for="ivHP">HP</label>
+    <input type="number" id="ivHP" min="0" max="31" value="31">
+    <label for="ivAtk">Atk</label>
+    <input type="number" id="ivAtk" min="0" max="31" value="31">
+    <label for="ivDef">Def</label>
+    <input type="number" id="ivDef" min="0" max="31" value="31">
+    <label for="ivSpA">SpA</label>
+    <input type="number" id="ivSpA" min="0" max="31" value="31">
+    <label for="ivSpD">SpD</label>
+    <input type="number" id="ivSpD" min="0" max="31" value="31">
+    <label for="ivSpd">Speed</label>
+    <input type="number" id="ivSpd" min="0" max="31" value="31">
+  </div>
 
-      <!-- IV Calculator (inversión de fórmula) -->
-      <div class="panel">
-        <h3>IV Calculator</h3>
-        <label for="ivStatSelect">Stat</label>
-        <select id="ivStatSelect">
-          <option value="HP">HP</option>
-          <option value="Atk">Atk</option>
-          <option value="Def">Def</option>
-          <option value="SpA">SpA</option>
-          <option value="SpD">SpD</option>
-          <option value="Spe">Spe</option>
-        </select>
-        <label for="observedStat">Stat observado</label>
-        <input type="number" id="observedStat" placeholder="Ej. 202">
-        <label for="evForIV">EV asignado</label>
-        <input type="number" id="evForIV" min="0" max="252" value="0">
-        <button class="btn" id="btnCalcIV">Calcular IV</button>
-        <div class="result" id="ivResult">IV estimado: —</div>
-      </div>
+  <h2 class="side-title">Distribución EVs</h2>
+  <div class="panel">
+    <h3>EVs totales: <span id="evTotal">0</span>/510</h3>
+    <label for="evHP">HP</label>
+    <input type="number" id="evHP" min="0" max="252" value="0">
+    <label for="evAtk">Atk</label>
+    <input type="number" id="evAtk" min="0" max="252" value="0">
+    <label for="evDef">Def</label>
+    <input type="number" id="evDef" min="0" max="252" value="0">
+    <label for="evSpA">SpA</label>
+    <input type="number" id="evSpA" min="0" max="252" value="0">
+    <label for="evSpD">SpD</label>
+    <input type="number" id="evSpD" min="0" max="252" value="0">
+    <label for="evSpd">Speed</label>
+    <input type="number" id="evSpd" min="0" max="252" value="0">
+    <div class="result" id="evWarning"></div>
+  </div>
+</aside>
 
-      <!-- EV Calculator (inversión de fórmula) -->
-      <div class="panel">
-        <h3>EV Calculator</h3>
-        <label for="evStatSelect">Stat</label>
-        <select id="evStatSelect">
-          <option value="HP">HP</option>
-          <option value="Atk">Atk</option>
-          <option value="Def">Def</option>
-          <option value="SpA">SpA</option>
-          <option value="SpD">SpD</option>
-          <option value="Spe">Spe</option>
-        </select>
-        <label for="targetStat">Stat objetivo</label>
-        <input type="number" id="targetStat" placeholder="Ej. 200">
-        <label for="ivForEV">IV</label>
-        <input type="number" id="ivForEV" min="0" max="31" value="31">
-        <button class="btn" id="btnCalcEV">Calcular EV</button>
-        <div class="result" id="evResult">EV necesario: —</div>
-      </div>
+<script>
+  // Validación de EVs
+  const evInputs = ['evHP','evAtk','evDef','evSpA','evSpD','evSpd'].map(id=>document.getElementById(id));
+  const evTotal = document.getElementById('evTotal');
+  const evWarning = document.getElementById('evWarning');
 
+  function updateEVs(){
+    let total = 0;
+    evInputs.forEach(input=>{
+      let val = parseInt(input.value)||0;
+      if(val > 252){ input.value = 252; val = 252; }
+      if(val < 0){ input.value = 0; val = 0; }
+      total += val;
+    });
+    evTotal.textContent = total;
+    if(total > 510){
+      evWarning.textContent = "⚠️ Has excedido el límite de 510 EVs.";
+      evWarning.style.color = "red";
+    } else {
+      evWarning.textContent = "";
+    }
+  }
+  evInputs.forEach(input=>input.addEventListener('input', updateEVs));
+  updateEVs();
+</script>   
+
+        
+
+        
+      
       <!-- Level Calculator (stats a nivel N) -->
       <div class="panel">
         <h3>Level Calculator</h3>
