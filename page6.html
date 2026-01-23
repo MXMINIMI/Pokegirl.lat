@@ -1182,9 +1182,13 @@ evInputs.forEach(input=>input.addEventListener('input', updateEVs));
     const alphaChk = document.getElementById('alpha');
     const attrResult = document.getElementById('attrResult');
     function updateAttrs(){
-      attrResult.textContent = `Ball: ${ballSel.value} · Shiny: ${shinyChk.checked ? 'Sí' : 'No'} · Alpha: ${alphaChk.checked ? 'Sí' : 'No'}`;
+      attrResult.textContent = ` Pokemon: ${PokemonSel.value}  Ball: ${ballSel.value} 
+      · Level 50: ${Level 50Chk.checked ? 'Sí' : 'No'}
+      · Level 100: ${Level 100Chk.checked ? 'Sí' : 'No'}
+      
+      · Shiny: ${shinyChk.checked ? 'Sí' : 'No'} · Alpha: ${alphaChk.checked ? 'Sí' : 'No'}`;
     }
-    [ballSel, shinyChk, alphaChk].forEach(el => el.addEventListener('change', updateAttrs));
+    [ PokemonSel,   ballSel, Level 50Chk, Level 100Cnk, shinyChk, alphaChk].forEach(el => el.addEventListener('change', updateAttrs));
     updateAttrs();
 
     // Previsualización de stats con parámetros base
@@ -1346,7 +1350,10 @@ evInputs.forEach(input=>input.addEventListener('input', updateEVs));
 <script>
 document.getElementById('btnEnviar').addEventListener('click', () => {
   const pokemon = document.getElementById('pokemon')?.value || '—';
-  const ball = document.getElementById('ball')?.value || '—';
+    const ball = document.getElementById('ball')?.value || '—';
+  const Level 50 = document.getElementById('Level 50')?.checked ? 'Sí' : 'No';
+  const Level 100 = document.getElementById('Level 100')?.checked ? 'Sí' : 'No';
+  
   const shiny = document.getElementById('shiny')?.checked ? 'Sí' : 'No';
   const alpha = document.getElementById('alpha')?.checked ? 'Sí' : 'No';
 
