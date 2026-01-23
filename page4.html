@@ -523,7 +523,17 @@
 
     
     <!-- Sidebar con calculadoras y atributos -->
-    <aside class="sidebar" id="calculadoras" aria-label="Calculadoras y atributos">
+
+
+<aside class="sidebar" id="calculadoras">
+  <form id="pedidoForm" action="enviar.php" method="POST">
+    <!-- aquí van los select de Pokémon, Ball, checkboxes Shiny/Alpha, inputs de IVs y EVs -->
+    <!-- ... -->
+    <button type="submit" class="btn">Enviar pedido</button>
+  </form>
+</aside>
+
+      
       <h2 class="side-title">Calculadoras</h2>
 
       <!-- Atributos: Ball, Shiny, Alpha -->
