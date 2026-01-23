@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tienda Pokémon — Encanto y Competencia</title>
-  <meta name="description" content="Pokémon competitivos y shiny, verificados y listos para torneo, con un toque femenino." />
+  <title>Pokegirl.lat</title>
+  <meta name="description" content="Venta de Pokemon competitivos" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
@@ -18,30 +18,20 @@
     *{box-sizing:border-box}
     body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--text)}
     header{position:sticky; top:0; background:rgba(255,255,255,.85); backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid rgba(31,41,55,.08); z-index:10}
-    .wrap{max-width:1100px; margin:0 auto; padding:16px}
+    .wrap{max-width:1200px; margin:0 auto; padding:16px}
     nav{display:flex; align-items:center; justify-content:space-between}
     .brand{font-family:"Playfair Display",serif; font-weight:700; letter-spacing:.3px}
     .brand span{color:var(--rose)}
     .links a{color:var(--muted); text-decoration:none; margin-left:18px}
     .links a:hover{color:var(--text)}
-    .hero{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; padding:40px 16px}
-    .title{font-family:"Playfair Display",serif; font-size:clamp(28px,4vw,48px); line-height:1.1; margin:0 0 12px}
-    .lead{color:var(--muted); font-size:clamp(16px,2vw,18px)}
-    .cta{display:flex; gap:12px; margin-top:18px}
-    .btn{padding:12px 16px; border-radius:12px; border:1px solid rgba(31,41,55,.12); background:var(--rose); color:#fff; font-weight:600}
-    .btn.secondary{background:transparent; color:var(--text)}
-    .card{background:var(--card); border:1px solid rgba(31,41,55,.08); border-radius:var(--radius); box-shadow:var(--shadow)}
-    .svg-hero{width:100%; aspect-ratio:4/3; border-radius:var(--radius); overflow:hidden; position:relative;
-      background: radial-gradient(120% 120% at 0% 0%, var(--rose) 0%, var(--lilac) 40%, var(--bg) 100%);
-    }
-    .svg-hero::after{content:""; position:absolute; inset:0;
-      background: radial-gradient(200px 200px at 20% 30%, rgba(255,255,255,.35), transparent 60%),
-                  radial-gradient(160px 160px at 70% 60%, rgba(142,229,209,.35), transparent 60%);
-      mix-blend-mode:screen;
-    }
-    .section{padding:24px 16px}
-    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-    .product{padding:14px; display:flex; flex-direction:column}
+
+    /* Layout principal */
+    .main{display:grid; grid-template-columns:1fr 360px; gap:24px; align-items:start; padding:24px 16px}
+    .content .hero{background:var(--card); border:1px solid rgba(31,41,55,.08); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px}
+    .title{font-family:"Playfair Display",serif; font-size:clamp(28px,4vw,44px); margin:0 0 8px}
+    .lead{color:var(--muted)}
+    .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
+    .product{background:var(--card); border:1px solid rgba(31,41,55,.08); border-radius:14px; box-shadow:var(--shadow); padding:14px}
     .product .img{width:100%; aspect-ratio:1/1; border-radius:12px; background:
       linear-gradient(135deg, #fff 0%, #FFE6EF 60%, #F4A6C0 100%);
       position:relative; overflow:hidden;
@@ -49,120 +39,1373 @@
     .badge{position:absolute; top:10px; left:10px; background:#1F2937; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px}
     .product h3{margin:12px 0 6px; font-size:18px}
     .meta{color:var(--muted); font-size:14px}
-    .price{margin-top:8px; font-weight:600}
     .actions{display:flex; gap:10px; margin-top:12px}
     .pill{padding:8px 12px; border-radius:999px; border:1px solid rgba(31,41,55,.12); background:#fff}
-    .trust{display:grid; grid-template-columns:1fr 1fr; gap:18px}
-    .trust .item{padding:18px}
-    footer{padding:28px 16px; color:var(--muted)}
-    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:1fr 1fr} .trust{grid-template-columns:1fr} }
-    @media (max-width:600px){ .grid{grid-template-columns:1fr} }
+
+    /* Sidebar */
+    aside.sidebar{
+      position:sticky; top:84px; height:calc(100vh - 100px); overflow:auto;
+      background:linear-gradient(180deg, #FFE6EF 0%, #F4A6C0 40%, #C7A4F8 100%);
+      border-radius:18px; box-shadow:var(--shadow); color:#fff; padding:16px;
+    }
+    .side-title{font-family:"Playfair Display",serif; margin:0 0 12px}
+    .panel{background:#fff; color:var(--text); border-radius:14px; padding:14px; margin-bottom:14px; border:1px solid rgba(31,41,55,.08)}
+    .panel h3{margin:0 0 8px; color:#C7A4F8}
+    label{display:block; font-size:13px; color:var(--muted); margin:8px 0 4px}
+    input, select{width:100%; padding:8px; border:1px solid #e5e7eb; border-radius:10px; font-size:14px}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    .btn{width:100%; padding:10px; border:none; border-radius:10px; background:#C7A4F8; color:#fff; font-weight:600; margin-top:10px}
+    .result{margin-top:8px; font-weight:600; color:#8EE5D1}
+    .toggle{display:flex; align-items:center; gap:8px; margin-top:8px}
+    .toggle input{width:auto}
+
+    /* Responsive */
+    @media (max-width:1000px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:800px){ .main{grid-template-columns:1fr} aside.sidebar{position:relative; top:auto; height:auto} .grid{grid-template-columns:1fr} }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
       <nav aria-label="Principal">
-        <div class="brand">Encanto <span>Pokémon</span></div>
+        <div class="brand">Welcome to <span>Pokegirl.Lat</span></div>
         <div class="links">
-          <a href="#catalogo">Catálogo</a>
-          <a href="#como">Cómo trabajamos</a>
-          <a href="#contacto">Contacto</a>
-        </div>
+Compra directamente en: 
+           <a href="https://www.facebook.com/profile.php?id=100089680800360">My Facebook </a>
+             <a href="https://www.ebay.com/itm/317714634434"> Ebay </a>
+               </div>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="wrap hero">
-      <div>
-        <h1 class="title">Pokémon competitivos con un toque femenino</h1>
-        <p class="lead">Verificados, legales y listos para torneo. Personaliza idioma, OT y detalles—entrega rápida y soporte cercano.</p>
-        <div class="cta">
-          <a class="btn" href="#catalogo">Explorar catálogo</a>
-          <a class="btn secondary" href="#como">Ver legalidad</a>
+  <div class="wrap main">
+    <!-- Contenido principal -->
+    <section class="content">
+      <div class="hero">
+        <h1 class="title">Hi welcome , I’d love your support ,
+would you please help me? :3 </h1>
+        <p class="lead">
+          <br><br><img src="name.png" class="imagen-hover"  ><br><br>
+          
+I’m offering my Pkmn breeding service! starting at 2 dollars Poke + Item / Or 13 bucks per Box Item ( 30 ) </p>
+      </div>
+
+      <section id="catalogo" style="margin-top:18px">
+        <h2>Destacados</h2>
+        <div class="grid">
+          <article class="product">
+            <div class="img" role="img" aria-label="Placeholder Pokémon">
+              <span class="badge">Legal</span>
+            </div>
+            <h3>Sylveon — Shiny</h3>
+            <p class="meta">Modest · Pixilate · EVs 252 SpA / 252 HP</p>
+            <div class="actions">
+              <button class="pill">Detalles</button>
+              <button class="pill">Agregar</button>
+            </div>
+          </article>
+          <article class="product">
+            <div class="img" role="img" aria-label="Placeholder Pokémon">
+              <span class="badge">Competitivo</span>
+            </div>
+            <h3>Garchomp — Jolly</h3>
+            <p class="meta">Rough Skin · EVs 252 Atk / 252 Spe</p>
+            <div class="actions">
+              <button class="pill">Detalles</button>
+              <button class="pill">Agregar</button>
+            </div>
+          </article>
+          <article class="product">
+            <div class="img" role="img" aria-label="Placeholder Pokémon">
+              <span class="badge">Evento</span>
+            </div>
+            <h3>Mew — OT personalizado</h3>
+            <p class="meta">Moveset a elección · Entrega 24–48 h</p>
+            <div class="actions">
+              <button class="pill">Detalles</button>
+              <button class="pill">Agregar</button>
+            </div>
+          </article>
         </div>
-      </div>
-      <div class="svg-hero" role="img" aria-label="Fondo suave con gradientes rosa y lila"></div>
+      </section>
     </section>
 
-    <section id="catalogo" class="wrap section">
-      <h2>Destacados</h2>
-      <div class="grid">
-        <!-- Producto 1 -->
-        <article class="card product" aria-labelledby="p1">
-          <div class="img" role="img" aria-label="Pokémon competitivo — placeholder">
-            <span class="badge" title="Legal para torneos">Legal</span>
-          </div>
-          <h3 id="p1">Garchomp — Competitivo</h3>
-          <p class="meta">Naturaleza Jolly · EVs 252 Atk / 252 Spe · Habilidad Rough Skin</p>
-          <p class="price">$—</p>
-          <div class="actions">
-            <button class="pill">Detalles</button>
-            <button class="pill">Agregar</button>
-          </div>
-        </article>
-        <!-- Producto 2 -->
-        <article class="card product" aria-labelledby="p2">
-          <div class="img" role="img" aria-label="Pokémon shiny — placeholder">
-            <span class="badge" title="Shiny verificado">Shiny</span>
-          </div>
-          <h3 id="p2">Sylveon — Shiny</h3>
-          <p class="meta">Naturaleza Modest · EVs 252 SpA / 252 HP · Habilidad Pixilate</p>
-          <p class="price">$—</p>
-          <div class="actions">
-            <button class="pill">Detalles</button>
-            <button class="pill">Agregar</button>
-          </div>
-        </article>
-        <!-- Producto 3 -->
-        <article class="card product" aria-labelledby="p3">
-          <div class="img" role="img" aria-label="Pokémon de evento — placeholder">
-            <span class="badge" title="Evento">Evento</span>
-          </div>
-          <h3 id="p3">Mew — Evento</h3>
-          <p class="meta">OT personalizado · Moveset a elección · Entrega 24–48 h</p>
-          <p class="price">$—</p>
-          <div class="actions">
-            <button class="pill">Detalles</button>
-            <button class="pill">Agregar</button>
-          </div>
-        </article>
-      </div>
-    </section>
 
-    <section id="como" class="wrap section card">
-      <div class="trust">
-        <div class="item">
-          <h3>Legalidad y cumplimiento</h3>
-          <p>Todos los parámetros se revisan para cumplir con reglas de torneo. Si algo no cuadra, lo ajustamos sin costo.</p>
+
+
+ 
+
+
+
+
+  <!-- Nueva sección: Selección de Pokémon -->
+
+
+   
+    
+
+    
+
+
+    
+    <!-- Sidebar con calculadoras y atributos -->
+
+                                                                     <!-- Atributos: Ball, Shiny, Alpha -->
+     
+
+
+
+ <div class="panel">
+   
+        <h3>Custom Pokemon</h3>
+                                                   <div class="panel">
+     <label for="Pokemon">Pokemon</label>
+        <select id="Pokemon">
+               
+    <option>001 - Chikorita</option>
+<option value="002">002 - Bayleef</option>
+<option>003 - Meganium</option>
+<option value="004">004 - Tepig</option>
+<option value="005">005 - Pignite</option>
+<option value="006">006 - Emboar</option>
+<option value="007">007 - Totodile</option>
+<option value="008">008 - Croconaw</option>
+<option value="009">009 - Feraligatr</option>
+<option value="010">010 - Fletchling</option>
+<option value="011">011 - Fletchinder</option>
+<option value="012">012 - Talonflame</option>
+<option value="013">013 - Bunnelby</option>
+<option value="014">014 - Diggersby</option>
+<option value="015">015 - Scatterbug</option>
+<option value="016">016 - Spewpa</option>
+<option value="017">017 - Vivillon</option>
+<option value="018">018 - Weedle</option>
+<option value="019">019 - Kakuna</option>
+<option value="020">020 - Beedrill</option>
+<option value="021">021 - Pidgey</option>
+<option value="022">022 - Pidgeotto</option>
+<option value="023">023 - Pidgeot</option>
+<option value="024">024 - Mareep</option>
+<option value="025">025 - Flaaffy</option>
+<option value="026">026 - Ampharos</option>
+<option value="027">027 - Patrat</option>
+<option value="028">028 - Watchog</option>
+<option value="029">029 - Budew</option>
+<option value="030">030 - Roselia</option>
+<option value="031">031 - Roserade</option>
+<option value="032">032 - Magikarp</option>
+<option value="033">033 - Gyarados</option>
+<option value="034">034 - Binacle</option>
+<option value="035">035 - Barbaracle</option>
+<option value="036">036 - Staryu</option>
+<option value="037">037 - Starmie</option>
+<option value="038">038 - Flabébé</option>
+<option value="039">039 - Floette</option>
+<option value="040">040 - Florges</option>
+<option value="041">041 - Skiddo</option>
+<option value="042">042 - Gogoat</option>
+<option value="043">043 - Espurr</option>
+<option value="044">044 - Meowstic</option>
+<option value="045">045 - Litleo</option>
+<option value="046">046 - Pyroar</option>
+<option value="047">047 - Pancham</option>
+<option value="048">048 - Pangoro</option>
+<option value="049">049 - Trubbish</option>
+<option value="050">050 - Garbodor</option>
+<option value="051">051 - Dedenne</option>
+<option value="052">052 - Pichu</option>
+<option value="053">053 - Pikachu</option>
+<option value="054">054 - Raicu</option>
+<option value="055">055 - Cleffa</option>
+<option value="056">056 - Clefairy</option>
+<option value="057">057 - Clefable</option>
+<option value="058">058 - Spinarak</option>
+<option value="059">059 - Ariados</option>
+<option value="060">060 - Ekans</option>
+<option value="061">061 - Arbok</option>
+<option value="062">062 - Abra</option>
+<option value="063">063 - Kadabra</option>
+<option value="064">064 - Alakazam</option>
+<option value="065">065 - Gastly</option>
+<option value="066">066 - Haunter</option>
+<option value="067">067 - Gengar</option>
+<option value="068">068 - Venipede</option>
+<option value="069">069 - Whirlipede</option>
+<option value="070">070 - Scolipede</option>
+<option value="071">071 - Honedge</option>
+<option value="072">072 - Doublade</option>
+<option value="073">073 - Aegislash</option>
+<option value="074">074 - Bellsprout</option>
+<option value="075">075 - Weepinbell</option>
+<option value="076">076 - Victreebel</option>
+<option value="077">077 - Pansage</option>
+<option value="078">078 - Simisage</option>
+<option value="079">079 - Pansear</option>
+<option value="080">080 - Simisear</option>
+<option value="081">081 - Panpour</option>
+<option value="082">082 - Simipour</option>
+<option value="083">083 - Meditite</option>
+<option value="084">084 - Medicham</option>
+<option value="085">085 - Electrike</option>
+<option value="086">086 - Manectric</option>
+<option value="087">087 - Ralts</option>
+<option value="088">088 - Kirlia</option>
+<option value="089">089 - Gardevoir</option>
+<option value="090">090 - Gallade</option>
+<option value="091">091 - Houndour</option>
+<option value="092">092 - Houndoom</option>
+<option value="093">093 - Swablu</option>
+<option value="094">094 - Altaria</option>
+<option value="095">095 - Audino</option>
+<option value="096">096 - Spritzee</option>
+<option value="097">097 - Aromatisse</option>
+<option value="098">098 - Swirlix</option>
+<option value="099">099 - Slurpuff</option>
+<option value="100">100 - Eevee</option>
+<option value="101">101 - Vaporeon</option>
+<option value="102">102 - Jolteon</option>
+<option value="103">103 - Flareon</option>
+<option value="104">104 - Espeon</option>
+<option value="105">105 - Umbreon</option>
+<option value="106">106 - Leafeon</option>
+<option value="107">107 - Glaceon</option>
+<option value="108">108 - Sylveon</option>
+<option value="109">109 - Buneary</option>
+<option value="110">110 - Lopunny</option>
+<option value="111">111 - Shuppet</option>
+<option value="112">112 - Banette</option>
+<option value="113">113 - Vanillite</option>
+<option value="114">114 - Vanillish</option>
+<option value="115">115 - Vanilluxe</option>
+<option value="116">116 - Numel</option>
+<option value="117">117 - Camerupt</option>
+<option value="118">118 - Hippopotas</option>
+<option value="119">119 - Hippowdon</option>
+<option value="120">120 - Drilbur</option>
+<option value="121">121 - Excadrill</option>
+<option value="122">122 - Sandile</option>
+<option value="123">123 - Krokorok</option>
+<option value="124">124 - Krookodile</option>
+<option value="125">125 - Machop</option>
+<option value="126">126 - Machoke</option>
+<option value="127">127 - Machamp</option>
+<option value="128">128 - Gible</option>
+<option value="129">129 - Gabite</option>
+<option value="130">130 - Garchomp</option>
+<option value="131">131 - Carbink</option>
+<option value="132">132 - Sableye</option>
+<option value="133">133 - Mawile</option>
+<option value="134">134 - Absol</option>
+<option value="135">135 - Riolu</option>
+<option value="136">136 - Lucario</option>
+<option value="137">137 - Slowpoke</option>
+<option value="138">138 - Slowbro</option>
+<option value="139">139 - Slowking</option>
+<option value="140">140 - Carvanha</option>
+<option value="141">141 - Sharpedo</option>
+<option value="142">142 - Tynamo</option>
+<option value="143">143 - Eelektrik</option>
+<option value="144">144 - Eelektross</option>
+<option value="145">145 - Dratini</option>
+<option value="146">146 - Dragonair</option>
+<option value="147">147 - Dragonite</option>
+<option value="148">148 - Bulbasaur</option>
+<option value="149">149 - Ivysaur</option>
+<option value="150">150 - Venusaur</option>
+<option value="151">151 - Charmander</option>
+<option value="152">152 - Charmeleon</option>
+<option value="153">153 - Charizard</option>
+<option value="154">154 - Squirtle</option>
+<option value="155">155 - Wartortle</option>
+<option value="156">156 - Blastoise</option>
+<option value="157">157 - Stunfisk</option>
+<option value="158">158 - Furfrou</option>
+<option value="159">159 - Inkay</option>
+<option value="160">160 - Malamar</option>
+<option value="161">161 - Skrelp</option>
+<option value="162">162 - Dragalge</option>
+<option value="163">163 - Clauncher</option>
+<option value="164">164 - Clawitzer</option>
+<option value="165">165 - Goomy</option>
+<option value="166">166 - Sliggoo</option>
+<option value="167">167 - Goodra</option>
+<option value="168">168 - Delibird</option>
+<option value="169">169 - Snorunt</option>
+<option value="170">170 - Glalie</option>
+<option value="171">171 - Froslass</option>
+<option value="172">172 - Snover</option>
+<option value="173">173 - Abomasnow</option>
+<option value="174">174 - Bergmite</option>
+<option value="175">175 - Avalugg</option>
+<option value="176">176 - Scyther</option>
+<option value="177">177 - Scizor</option>
+<option value="178">178 - Pinsir</option>
+<option value="179">179 - Heracross</option>
+<option value="180">180 - Emolga</option>
+<option value="181">181 - Hawlucha</option>
+<option value="182">182 - Phantump</option>
+<option value="183">183 - Trevenant</option>
+<option value="184">184 - Scraggy</option>
+<option value="185">185 - Scrafty</option>
+<option value="186">186 - Noibat</option>
+<option value="187">187 - Noivern</option>
+<option value="188">188 - Klefki</option>
+<option value="189">189 - Litwick</option>
+<option value="190">190 - Lampent</option>
+<option value="191">191 - Chandelure</option>
+<option value="192">192 - Aerodactyl</option>
+<option value="193">193 - Tyrunt</option>
+<option value="194">194 - Tyrantrum</option>
+<option value="195">195 - Amaura</option>
+<option value="196">196 - Aurorus</option>
+<option value="197">197 - Onix</option>
+<option value="198">198 - Steelix</option>
+<option value="199">199 - Aron</option>
+<option value="200">200 - Lairon</option>
+<option value="201">201 - Aggron</option>
+<option value="202">202 - Helioptile</option>
+<option value="203">203 - Heliolisk</option>
+<option value="204">204 - Pumpkaboo</option>
+<option value="205">205 - Gourgeist</option>
+<option value="206">206 - Larvitar</option>
+<option value="207">207 - Pupitar</option>
+<option value="208">208 - Tyranitar</option>
+<option value="209">209 - Froakie</option>
+<option value="210">210 - Frogadier</option>
+<option value="211">211 - Greninja</option>
+<option value="212">212 - Falinks</option>
+<option value="213">213 - Chespin</option>
+<option value="214">214 - Quilladin</option>
+<option value="215">215 - Chesnaught</option>
+<option value="216">216 - Skarmory</option>
+<option value="217">217 - Fennekin</option>
+<option value="218">218 - Braixen</option>
+<option value="219">219 - Delphox</option>
+<option value="220">220 - Bagon</option>
+<option value="221">221 - Shelgon</option>
+<option value="222">222 - Salamence</option>
+<option value="223">223 - Kangaskhan</option>
+<option value="224">224 - Drampa</option>
+<option value="225">225 - Beldum</option>
+<option value="226">226 - Metang</option>
+<option value="227">227 - Metagross</option>
+<option value="228">228 - Xerneas</option>
+<option value="229">229 - Yveltal</option>
+<option value="230">230 - Zygarde</option>
+<option value="231">231 - Diancie</option>
+<option value="232">232 - Mewtwo</option>
+<option value="233">233 - Mankey</option>
+<option value="234">234 - Primeape</option>
+<option value="235">235 - Annihilape</option>
+<option value="236">236 - Meowth</option>
+<option value="237">237 - Persian</option>
+<option value="238">238 - Perrserker</option>
+<option value="239">239 - Farfetch’d</option>
+<option value="240">240 - Sirfetch’d</option>
+<option value="241">241 - Cubone</option>
+<option value="242">242 - Marowak</option>
+<option value="243">243 - Porygon</option>
+<option value="244">244 - Porygon2</option>
+<option value="245">245 - Porygon-Z</option>
+<option value="246">246 - Capsakid</option>
+<option value="247">247 - Scovillain</option>
+<option value="248">248 - Tinkatink</option>
+<option value="249">249 - Tinkatuff</option>
+<option value="250">250 - Tinkaton</option>
+<option value="251">251 - Cyclizar</option>
+<option value="252">252 - Glimmet</option>
+<option value="253">253 - Glimmora</option>
+<option value="254">254 - Rotom</option>
+<option value="255">255 - Greavard</option>
+<option value="256">256 - Houndstone</option>
+<option value="257">257 - Sandygast</option>
+<option value="258">258 - Palossand</option>
+<option value="259">259 - Kecleon</option>
+<option value="260">260 - Flamigo</option>
+<option value="261">261 - Cryogonal</option>
+<option value="262">262 - Dondozo</option>
+<option value="263">263 - Tatsugiri</option>
+<option value="264">264 - Frigibax</option>
+<option value="265">265 - Arctibax</option>
+<option value="266">266 - Baxcalibur</option>
+<option value="267">267 - Gimmighoul</option>
+<option value="268">268 - Gholdengo</option>
+<option value="269">269 - Qwilfish</option>
+<option value="270">270 - Overqwil</option>
+<option value="271">271 - Treecko</option>
+<option value="272">272 - Grovyle</option>
+<option value="273">273 - Sceptile</option>
+<option value="274">274 - Torchic</option>
+<option value="275">275 - Combusken</option>
+<option value="276">276 - Blaziken</option>
+<option value="277">277 - Mudkip</option>
+<option value="278">278 - Marshtomp</option>
+<option value="279">279 - Swampert</option>
+<option value="280">280 - Feebas</option>
+<option value="281">281 - Milotic</option>
+<option value="282">282 - Chingling</option>
+<option value="283">283 - Chimecho</option>
+<option value="284">284 - Indeedee</option>
+<option value="285">285 - Purrloin</option>
+<option value="286">286 - Liepard</option>
+<option value="287">287 - Munna</option>
+<option value="288">288 - Musharna</option>
+<option value="289">289 - Throh</option>
+<option value="290">290 - Sawk</option>
+<option value="291">291 - Yamask</option>
+<option value="292">292 - Cofagrigus</option>
+<option value="293">293 - Runerigus</option>
+<option value="294">294 - Wimpod</option>
+<option value="295">295 - Golisopod</option>
+<option value="296">296 - Nickit</option>
+<option value="297">297 - Thievul</option>
+<option value="298">298 - Clobbopus</option>
+<option value="299">299 - Grapploct</option>
+<option value="300">300 - Mimikyu</option>
+<option value="301">301 - Kleavor</option>
+<option value="302">302 - Morpeko</option>
+<option value="303">303 - Golett</option>
+<option value="304">304 - Golurk</option>
+<option value="305">305 - Rookidee</option>
+<option value="306">306 - Corvisquire</option>
+<option value="307">307 - Corviknight</option>
+<option value="308">308 - Igglybuff</option>
+<option value="309">309 - Jigglypuff</option>
+<option value="310">310 - Wigglytuff</option>
+<option value="311">311 - Fidough</option>
+<option value="312">312 - Dachsbun</option>
+<option value="313">313 - Starly</option>
+<option value="314">314 - Staravia</option>
+<option value="315">315 - Staraptor</option>
+<option value="316">316 - Spoink</option>
+<option value="317">317 - Grumpig</option>
+<option value="318">318 - Squawkabilly</option>
+<option value="319">319 - Crabrawler</option>
+<option value="320">320 - Crabominable</option>
+<option value="321">321 - Nacli</option>
+<option value="322">322 - Naclstack</option>
+<option value="323">323 - Garganacl</option>
+<option value="324">324 - Gulpin</option>
+<option value="325">325 - Swalot</option>
+<option value="326">326 - Zubat</option>
+<option value="327">327 - Golbat</option>
+<option value="328">328 - Crobat</option>
+<option value="329">329 - Charcadet</option>
+<option value="330">330 - Armarouge</option>
+<option value="331">331 - Ceruledge</option>
+<option value="332">332 - Maschiff</option>
+<option value="333">333 - Mabosstiff</option>
+<option value="334">334 - Toxel</option>
+<option value="335">335 - Toxtricity</option>
+<option value="336">336 - Shroudle</option>
+<option value="337">337 - Grafaiai</option>
+<option value="338">338 - Zangoose</option>
+<option value="339">339 - Seviper</option>
+<option value="340">340 - Mime Jr.</option>
+<option value="341">341 - Mr. Mime</option>
+<option value="342">342 - Mr. Rime</option>
+<option value="343">343 - Foongus</option>
+<option value="344">344 - Amoonguss</option>
+<option value="345">345 - Heatran</option>
+<option value="346">346 - Volcanion</option>
+<option value="347">347 - Cobalion</option>
+<option value="348">348 - Terrakion</option>
+<option value="349">349 - Virizion</option>
+<option value="350">350 - Keldeo</option>
+<option value="351">351 - Meloetta</option>
+<option value="352">352 - Genesect</option>
+<option value="353">353 - Hoopa</option>
+<option value="354">354 - Marshadow</option>
+<option value="355">355 - Meltan</option>
+<option value="356">356 - Melmetal</option>
+<option value="357">357 - Darkrai</option>
+<option value="358">358 - Latias</option>
+<option value="359">359 - Latios</option>
+<option value="360">360 - Kyogre</option>
+<option value="361">361 - Groudon</option>
+<option value="362">362 - Rayquaza</option>
+<option value="363">363 - Magearna</option>
+<option value="364">364 - Zeraora</option>
+
+    </select>
+     </div>
+
+
+
+        
+
+
+
+        
+        <label for="ball">Ball</label>
+        <select id="ball">
+          <option>Poke Ball</option>
+
+          <option>Beast Ball</option>
+<option>Dive Ball</option>
+          <option>Dream Ball</option>
+          <option>Dusk Ball</option>
+          
+          <option>Fast Ball</option>
+          <option>Friend Ball</option>
+          
+            <option>Great Ball</option>
+
+          <option>Heal Ball</option>
+          <option> Heavy Ball </option>
+            
+  <option>Level Ball</option>
+            <option>Love Ball</option>
+          <option>Lure Ball  </option>
+          <option>Luxury Ball</option>
+          
+          <option>Master Ball</option>
+            <option>Moon Ball</option>
+          <option>Nest Ball</option>
+          <option>Premier Ball</option>
+
+<option>Quick Ball</option>
+          
+          <option>Repeat Ball</option>
+          <option>Safari Ball </option>
+           <option>Sport Ball</option>
+          <option>Timer Ball</option>
+        <option>Ultra Ball   </option>
+          
+</select>
+
+
+
+
+
+
+
+
+
+  <div class="panel">
+  <label for="Pokemon">Pokemon</label>
+        <select id="Pokemon">
+               
+    <option>001 - Chikorita</option>
+<option value="002">002 - Bayleef</option>
+<option>003 - Meganium</option>
+<option value="004">004 - Tepig</option>
+<option value="005">005 - Pignite</option>
+<option value="006">006 - Emboar</option>
+<option value="007">007 - Totodile</option>
+<option value="008">008 - Croconaw</option>
+<option value="009">009 - Feraligatr</option>
+<option value="010">010 - Fletchling</option>
+<option value="011">011 - Fletchinder</option>
+<option value="012">012 - Talonflame</option>
+<option value="013">013 - Bunnelby</option>
+<option value="014">014 - Diggersby</option>
+<option value="015">015 - Scatterbug</option>
+<option value="016">016 - Spewpa</option>
+<option value="017">017 - Vivillon</option>
+<option value="018">018 - Weedle</option>
+<option value="019">019 - Kakuna</option>
+<option value="020">020 - Beedrill</option>
+<option value="021">021 - Pidgey</option>
+<option value="022">022 - Pidgeotto</option>
+<option value="023">023 - Pidgeot</option>
+<option value="024">024 - Mareep</option>
+<option value="025">025 - Flaaffy</option>
+<option value="026">026 - Ampharos</option>
+<option value="027">027 - Patrat</option>
+<option value="028">028 - Watchog</option>
+<option value="029">029 - Budew</option>
+<option value="030">030 - Roselia</option>
+<option value="031">031 - Roserade</option>
+<option value="032">032 - Magikarp</option>
+<option value="033">033 - Gyarados</option>
+<option value="034">034 - Binacle</option>
+<option value="035">035 - Barbaracle</option>
+<option value="036">036 - Staryu</option>
+<option value="037">037 - Starmie</option>
+<option value="038">038 - Flabébé</option>
+<option value="039">039 - Floette</option>
+<option value="040">040 - Florges</option>
+<option value="041">041 - Skiddo</option>
+<option value="042">042 - Gogoat</option>
+<option value="043">043 - Espurr</option>
+<option value="044">044 - Meowstic</option>
+<option value="045">045 - Litleo</option>
+<option value="046">046 - Pyroar</option>
+<option value="047">047 - Pancham</option>
+<option value="048">048 - Pangoro</option>
+<option value="049">049 - Trubbish</option>
+<option value="050">050 - Garbodor</option>
+<option value="051">051 - Dedenne</option>
+<option value="052">052 - Pichu</option>
+<option value="053">053 - Pikachu</option>
+<option value="054">054 - Raicu</option>
+<option value="055">055 - Cleffa</option>
+<option value="056">056 - Clefairy</option>
+<option value="057">057 - Clefable</option>
+<option value="058">058 - Spinarak</option>
+<option value="059">059 - Ariados</option>
+<option value="060">060 - Ekans</option>
+<option value="061">061 - Arbok</option>
+<option value="062">062 - Abra</option>
+<option value="063">063 - Kadabra</option>
+<option value="064">064 - Alakazam</option>
+<option value="065">065 - Gastly</option>
+<option value="066">066 - Haunter</option>
+<option value="067">067 - Gengar</option>
+<option value="068">068 - Venipede</option>
+<option value="069">069 - Whirlipede</option>
+<option value="070">070 - Scolipede</option>
+<option value="071">071 - Honedge</option>
+<option value="072">072 - Doublade</option>
+<option value="073">073 - Aegislash</option>
+<option value="074">074 - Bellsprout</option>
+<option value="075">075 - Weepinbell</option>
+<option value="076">076 - Victreebel</option>
+<option value="077">077 - Pansage</option>
+<option value="078">078 - Simisage</option>
+<option value="079">079 - Pansear</option>
+<option value="080">080 - Simisear</option>
+<option value="081">081 - Panpour</option>
+<option value="082">082 - Simipour</option>
+<option value="083">083 - Meditite</option>
+<option value="084">084 - Medicham</option>
+<option value="085">085 - Electrike</option>
+<option value="086">086 - Manectric</option>
+<option value="087">087 - Ralts</option>
+<option value="088">088 - Kirlia</option>
+<option value="089">089 - Gardevoir</option>
+<option value="090">090 - Gallade</option>
+<option value="091">091 - Houndour</option>
+<option value="092">092 - Houndoom</option>
+<option value="093">093 - Swablu</option>
+<option value="094">094 - Altaria</option>
+<option value="095">095 - Audino</option>
+<option value="096">096 - Spritzee</option>
+<option value="097">097 - Aromatisse</option>
+<option value="098">098 - Swirlix</option>
+<option value="099">099 - Slurpuff</option>
+<option value="100">100 - Eevee</option>
+<option value="101">101 - Vaporeon</option>
+<option value="102">102 - Jolteon</option>
+<option value="103">103 - Flareon</option>
+<option value="104">104 - Espeon</option>
+<option value="105">105 - Umbreon</option>
+<option value="106">106 - Leafeon</option>
+<option value="107">107 - Glaceon</option>
+<option value="108">108 - Sylveon</option>
+<option value="109">109 - Buneary</option>
+<option value="110">110 - Lopunny</option>
+<option value="111">111 - Shuppet</option>
+<option value="112">112 - Banette</option>
+<option value="113">113 - Vanillite</option>
+<option value="114">114 - Vanillish</option>
+<option value="115">115 - Vanilluxe</option>
+<option value="116">116 - Numel</option>
+<option value="117">117 - Camerupt</option>
+<option value="118">118 - Hippopotas</option>
+<option value="119">119 - Hippowdon</option>
+<option value="120">120 - Drilbur</option>
+<option value="121">121 - Excadrill</option>
+<option value="122">122 - Sandile</option>
+<option value="123">123 - Krokorok</option>
+<option value="124">124 - Krookodile</option>
+<option value="125">125 - Machop</option>
+<option value="126">126 - Machoke</option>
+<option value="127">127 - Machamp</option>
+<option value="128">128 - Gible</option>
+<option value="129">129 - Gabite</option>
+<option value="130">130 - Garchomp</option>
+<option value="131">131 - Carbink</option>
+<option value="132">132 - Sableye</option>
+<option value="133">133 - Mawile</option>
+<option value="134">134 - Absol</option>
+<option value="135">135 - Riolu</option>
+<option value="136">136 - Lucario</option>
+<option value="137">137 - Slowpoke</option>
+<option value="138">138 - Slowbro</option>
+<option value="139">139 - Slowking</option>
+<option value="140">140 - Carvanha</option>
+<option value="141">141 - Sharpedo</option>
+<option value="142">142 - Tynamo</option>
+<option value="143">143 - Eelektrik</option>
+<option value="144">144 - Eelektross</option>
+<option value="145">145 - Dratini</option>
+<option value="146">146 - Dragonair</option>
+<option value="147">147 - Dragonite</option>
+<option value="148">148 - Bulbasaur</option>
+<option value="149">149 - Ivysaur</option>
+<option value="150">150 - Venusaur</option>
+<option value="151">151 - Charmander</option>
+<option value="152">152 - Charmeleon</option>
+<option value="153">153 - Charizard</option>
+<option value="154">154 - Squirtle</option>
+<option value="155">155 - Wartortle</option>
+<option value="156">156 - Blastoise</option>
+<option value="157">157 - Stunfisk</option>
+<option value="158">158 - Furfrou</option>
+<option value="159">159 - Inkay</option>
+<option value="160">160 - Malamar</option>
+<option value="161">161 - Skrelp</option>
+<option value="162">162 - Dragalge</option>
+<option value="163">163 - Clauncher</option>
+<option value="164">164 - Clawitzer</option>
+<option value="165">165 - Goomy</option>
+<option value="166">166 - Sliggoo</option>
+<option value="167">167 - Goodra</option>
+<option value="168">168 - Delibird</option>
+<option value="169">169 - Snorunt</option>
+<option value="170">170 - Glalie</option>
+<option value="171">171 - Froslass</option>
+<option value="172">172 - Snover</option>
+<option value="173">173 - Abomasnow</option>
+<option value="174">174 - Bergmite</option>
+<option value="175">175 - Avalugg</option>
+<option value="176">176 - Scyther</option>
+<option value="177">177 - Scizor</option>
+<option value="178">178 - Pinsir</option>
+<option value="179">179 - Heracross</option>
+<option value="180">180 - Emolga</option>
+<option value="181">181 - Hawlucha</option>
+<option value="182">182 - Phantump</option>
+<option value="183">183 - Trevenant</option>
+<option value="184">184 - Scraggy</option>
+<option value="185">185 - Scrafty</option>
+<option value="186">186 - Noibat</option>
+<option value="187">187 - Noivern</option>
+<option value="188">188 - Klefki</option>
+<option value="189">189 - Litwick</option>
+<option value="190">190 - Lampent</option>
+<option value="191">191 - Chandelure</option>
+<option value="192">192 - Aerodactyl</option>
+<option value="193">193 - Tyrunt</option>
+<option value="194">194 - Tyrantrum</option>
+<option value="195">195 - Amaura</option>
+<option value="196">196 - Aurorus</option>
+<option value="197">197 - Onix</option>
+<option value="198">198 - Steelix</option>
+<option value="199">199 - Aron</option>
+<option value="200">200 - Lairon</option>
+<option value="201">201 - Aggron</option>
+<option value="202">202 - Helioptile</option>
+<option value="203">203 - Heliolisk</option>
+<option value="204">204 - Pumpkaboo</option>
+<option value="205">205 - Gourgeist</option>
+<option value="206">206 - Larvitar</option>
+<option value="207">207 - Pupitar</option>
+<option value="208">208 - Tyranitar</option>
+<option value="209">209 - Froakie</option>
+<option value="210">210 - Frogadier</option>
+<option value="211">211 - Greninja</option>
+<option value="212">212 - Falinks</option>
+<option value="213">213 - Chespin</option>
+<option value="214">214 - Quilladin</option>
+<option value="215">215 - Chesnaught</option>
+<option value="216">216 - Skarmory</option>
+<option value="217">217 - Fennekin</option>
+<option value="218">218 - Braixen</option>
+<option value="219">219 - Delphox</option>
+<option value="220">220 - Bagon</option>
+<option value="221">221 - Shelgon</option>
+<option value="222">222 - Salamence</option>
+<option value="223">223 - Kangaskhan</option>
+<option value="224">224 - Drampa</option>
+<option value="225">225 - Beldum</option>
+<option value="226">226 - Metang</option>
+<option value="227">227 - Metagross</option>
+<option value="228">228 - Xerneas</option>
+<option value="229">229 - Yveltal</option>
+<option value="230">230 - Zygarde</option>
+<option value="231">231 - Diancie</option>
+<option value="232">232 - Mewtwo</option>
+<option value="233">233 - Mankey</option>
+<option value="234">234 - Primeape</option>
+<option value="235">235 - Annihilape</option>
+<option value="236">236 - Meowth</option>
+<option value="237">237 - Persian</option>
+<option value="238">238 - Perrserker</option>
+<option value="239">239 - Farfetch’d</option>
+<option value="240">240 - Sirfetch’d</option>
+<option value="241">241 - Cubone</option>
+<option value="242">242 - Marowak</option>
+<option value="243">243 - Porygon</option>
+<option value="244">244 - Porygon2</option>
+<option value="245">245 - Porygon-Z</option>
+<option value="246">246 - Capsakid</option>
+<option value="247">247 - Scovillain</option>
+<option value="248">248 - Tinkatink</option>
+<option value="249">249 - Tinkatuff</option>
+<option value="250">250 - Tinkaton</option>
+<option value="251">251 - Cyclizar</option>
+<option value="252">252 - Glimmet</option>
+<option value="253">253 - Glimmora</option>
+<option value="254">254 - Rotom</option>
+<option value="255">255 - Greavard</option>
+<option value="256">256 - Houndstone</option>
+<option value="257">257 - Sandygast</option>
+<option value="258">258 - Palossand</option>
+<option value="259">259 - Kecleon</option>
+<option value="260">260 - Flamigo</option>
+<option value="261">261 - Cryogonal</option>
+<option value="262">262 - Dondozo</option>
+<option value="263">263 - Tatsugiri</option>
+<option value="264">264 - Frigibax</option>
+<option value="265">265 - Arctibax</option>
+<option value="266">266 - Baxcalibur</option>
+<option value="267">267 - Gimmighoul</option>
+<option value="268">268 - Gholdengo</option>
+<option value="269">269 - Qwilfish</option>
+<option value="270">270 - Overqwil</option>
+<option value="271">271 - Treecko</option>
+<option value="272">272 - Grovyle</option>
+<option value="273">273 - Sceptile</option>
+<option value="274">274 - Torchic</option>
+<option value="275">275 - Combusken</option>
+<option value="276">276 - Blaziken</option>
+<option value="277">277 - Mudkip</option>
+<option value="278">278 - Marshtomp</option>
+<option value="279">279 - Swampert</option>
+<option value="280">280 - Feebas</option>
+<option value="281">281 - Milotic</option>
+<option value="282">282 - Chingling</option>
+<option value="283">283 - Chimecho</option>
+<option value="284">284 - Indeedee</option>
+<option value="285">285 - Purrloin</option>
+<option value="286">286 - Liepard</option>
+<option value="287">287 - Munna</option>
+<option value="288">288 - Musharna</option>
+<option value="289">289 - Throh</option>
+<option value="290">290 - Sawk</option>
+<option value="291">291 - Yamask</option>
+<option value="292">292 - Cofagrigus</option>
+<option value="293">293 - Runerigus</option>
+<option value="294">294 - Wimpod</option>
+<option value="295">295 - Golisopod</option>
+<option value="296">296 - Nickit</option>
+<option value="297">297 - Thievul</option>
+<option value="298">298 - Clobbopus</option>
+<option value="299">299 - Grapploct</option>
+<option value="300">300 - Mimikyu</option>
+<option value="301">301 - Kleavor</option>
+<option value="302">302 - Morpeko</option>
+<option value="303">303 - Golett</option>
+<option value="304">304 - Golurk</option>
+<option value="305">305 - Rookidee</option>
+<option value="306">306 - Corvisquire</option>
+<option value="307">307 - Corviknight</option>
+<option value="308">308 - Igglybuff</option>
+<option value="309">309 - Jigglypuff</option>
+<option value="310">310 - Wigglytuff</option>
+<option value="311">311 - Fidough</option>
+<option value="312">312 - Dachsbun</option>
+<option value="313">313 - Starly</option>
+<option value="314">314 - Staravia</option>
+<option value="315">315 - Staraptor</option>
+<option value="316">316 - Spoink</option>
+<option value="317">317 - Grumpig</option>
+<option value="318">318 - Squawkabilly</option>
+<option value="319">319 - Crabrawler</option>
+<option value="320">320 - Crabominable</option>
+<option value="321">321 - Nacli</option>
+<option value="322">322 - Naclstack</option>
+<option value="323">323 - Garganacl</option>
+<option value="324">324 - Gulpin</option>
+<option value="325">325 - Swalot</option>
+<option value="326">326 - Zubat</option>
+<option value="327">327 - Golbat</option>
+<option value="328">328 - Crobat</option>
+<option value="329">329 - Charcadet</option>
+<option value="330">330 - Armarouge</option>
+<option value="331">331 - Ceruledge</option>
+<option value="332">332 - Maschiff</option>
+<option value="333">333 - Mabosstiff</option>
+<option value="334">334 - Toxel</option>
+<option value="335">335 - Toxtricity</option>
+<option value="336">336 - Shroudle</option>
+<option value="337">337 - Grafaiai</option>
+<option value="338">338 - Zangoose</option>
+<option value="339">339 - Seviper</option>
+<option value="340">340 - Mime Jr.</option>
+<option value="341">341 - Mr. Mime</option>
+<option value="342">342 - Mr. Rime</option>
+<option value="343">343 - Foongus</option>
+<option value="344">344 - Amoonguss</option>
+<option value="345">345 - Heatran</option>
+<option value="346">346 - Volcanion</option>
+<option value="347">347 - Cobalion</option>
+<option value="348">348 - Terrakion</option>
+<option value="349">349 - Virizion</option>
+<option value="350">350 - Keldeo</option>
+<option value="351">351 - Meloetta</option>
+<option value="352">352 - Genesect</option>
+<option value="353">353 - Hoopa</option>
+<option value="354">354 - Marshadow</option>
+<option value="355">355 - Meltan</option>
+<option value="356">356 - Melmetal</option>
+<option value="357">357 - Darkrai</option>
+<option value="358">358 - Latias</option>
+<option value="359">359 - Latios</option>
+<option value="360">360 - Kyogre</option>
+<option value="361">361 - Groudon</option>
+<option value="362">362 - Rayquaza</option>
+<option value="363">363 - Magearna</option>
+<option value="364">364 - Zeraora</option>
+
+   </select>
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+<div class="toggle">
+          <input type="checkbox" id="Level 50 ">
+          <label for="shiny">Level 50</label>
         </div>
-        <div class="item">
-          <h3>Proceso de entrega</h3>
-          <p>Coordinamos horario, idioma y OT. Entrega segura en 24–48 h según volumen.</p>
+
+<div class="toggle">
+          <input type="checkbox" id="Level 100">
+          <label for="shiny">Level 100</label>
         </div>
-      </div>
-    </section>
+   
 
-    <section id="contacto" class="wrap section">
-      <h2>¿Listas para tu equipo?</h2>
-      <p>Escríbenos y armamos tu pedido con cariño y precisión.</p>
-      <div class="cta">
-        <a class="btn" href="#">Pedir ahora</a>
-        <a class="btn secondary" href="#">Ver FAQ</a>
-      </div>
-    </section>
-  </main>
+   
+        <div class="toggle">
+          <input type="checkbox" id="shiny">
+          <label for="shiny">Shiny</label>
+        </div>
+        <div class="toggle">
+          <input type="checkbox" id="alpha">
+          <label for="alpha">Alpha</label>
+        </div>
+        
 
-  <footer class="wrap">
-    <p>© Encanto Pokémon — Atención cercana y verificación técnica.</p>
+      <!-- Parámetros base -->
+      <div class="panel">
+<div class="panel">
+  <h3>Base IVs</h3>
+
+
+
+
+  
+
+  
+
+
+
+
+  <label for="Level">Level</label>
+  <input type="number" id="Level" min="1" max="100" value="100">
+  <label for="ivHP">HP</label>
+  <input type="number" id="ivHP" min="0" max="31" value="31">
+  <label for="ivAtk">Atk</label>
+  <input type="number" id="ivAtk" min="0" max="31" value="31">
+  <label for="ivDef">Def</label>
+  <input type="number" id="ivDef" min="0" max="31" value="31">
+  <label for="ivSpA">SpA</label>
+  <input type="number" id="ivSpA" min="0" max="31" value="31">
+  <label for="ivSpD">SpD</label>
+  <input type="number" id="ivSpD" min="0" max="31" value="31">
+  <label for="ivSpd">Spd</label>
+  <input type="number" id="ivSpd" min="0" max="31" value="31">
+</div>
+
+
+
+
+
+
+        
+  <h2 class="side-title">Distribución EVs</h2>
+  <div class="panel">
+    <h3>EVs totales: <span id="evTotal">0</span>/510</h3>
+    <label for="evHP">HP</label>
+    <input type="number" id="evHP" min="0" max="252" value="0">
+    <label for="evAtk">Atk</label>
+    <input type="number" id="evAtk" min="0" max="252" value="0">
+    <label for="evDef">Def</label>
+    <input type="number" id="evDef" min="0" max="252" value="0">
+    <label for="evSpA">SpA</label>
+    <input type="number" id="evSpA" min="0" max="252" value="0">
+    <label for="evSpD">SpD</label>
+    <input type="number" id="evSpD" min="0" max="252" value="0">
+    <label for="evSpd">Speed</label>
+    <input type="number" id="evSpd" min="0" max="252" value="0">
+    <div class="result" id="evWarning"></div>
+  </div>
+</aside>
+
+<script>
+  // Validación de EVs
+  const evInputs = ['evHP','evAtk','evDef','evSpA','evSpD','evSpd'].map(id=>document.getElementById(id));
+  const evTotal = document.getElementById('evTotal');
+  const evWarning = document.getElementById('evWarning');
+
+  function updateEVs(){
+    let total = 0;
+    evInputs.forEach(input=>{
+      let val = parseInt(input.value)||0;
+      if(val > 252){ input.value = 252; val = 252; }
+      if(val < 0){ input.value = 0; val = 0; }
+      total += val;
+    });
+    evTotal.textContent = total;
+    if(total > 510){
+      evWarning.textContent = "⚠️ Has excedido el límite de 510 EVs.";
+      evWarning.style.color = "red";
+    } else {
+      evWarning.textContent = "";
+    }
+  }
+  evInputs.forEach(input=>input.addEventListener('input', updateEVs));
+  updateEVs();
+</script>   
+
+
+ <h2 class="side-title">Preparar pedido</h2>
+
+      
+
+
+  <!-- Resumen -->
+  <div class="panel">
+    <h3>Verifica tu pedido por favor </h3>
+    <div id="resumenDatos">¿Dudas? Escribeme en Facebook <br><br>Lika Megam <br><br> o por correo<br> Pokegirl.lat@outlook.com </div>
+  </div>
+</aside>
+
+<script>
+
+        
+      
+                       
+  // Validación EVs
+  const evInputs = ['evHP','evAtk','evDef','evSpA','evSpD','evSpd'].map(id=>document.getElementById(id));
+  const evTotal = document.getElementById('evTotal');
+  const evWarning = document.getElementById('evWarning');
+
+  function updateEVs(){
+    let total = 0;
+    evInputs.forEach(input=>{
+      let val = parseInt(input.value)||0;
+      if(val > 252){ input.value = 252; val = 252; }
+      if(val < 0){ input.value = 0; val = 0; }
+      total += val;
+    });
+    evTotal.textContent = total;
+    if(total > 510){
+      evWarning.textContent = "⚠️ Has excedido el límite de 510 EVs.";
+      evWarning.style.color = "red";
+    } else {
+      evWarning.textContent = "";
+    }
+  }
+evInputs.forEach(input=>input.addEventListener('input', updateEVs));
+  updateEVs();
+
+  // Botón enviar
+  const btnEnviar = document.getElementById('btnEnviar');
+  const resumenDatos = document.getElementById('resumenDatos');
+
+  btnEnviar.addEventListener('click', ()=>{
+    const ivs = {
+       Pokemon: document.getElementById('Pokemon').value,
+    const ivs = {
+      Level: document.getElementById('Level').value,
+      HP: document.getElementById('ivHP').value,
+      Atk: document.getElementById('ivAtk').value,
+      Def: document.getElementById('ivDef').value,
+      SpA: document.getElementById('ivSpA').value,
+      SpD: document.getElementById('ivSpD').value,
+      Speed: document.getElementById('ivSpd').value
+    };
+    const evs = {
+      HP: document.getElementById('evHP').value,
+      Atk: document.getElementById('evAtk').value,
+      Def: document.getElementById('evDef').value,
+      SpA: document.getElementById('evSpA').value,
+      SpD: document.getElementById('evSpD').value,
+      Speed: document.getElementById('evSpd').value
+    };
+    resumenDatos.innerHTML = `
+      <strong>IVs:</strong> HP ${ivs.HP}, Atk ${ivs.Atk}, Def ${ivs.Def}, SpA ${ivs.SpA}, SpD ${ivs.SpD}, Speed ${ivs.Speed}<br>
+      <strong>EVs:</strong> HP ${evs.HP}, Atk ${evs.Atk}, Def ${evs.Def}, SpA ${evs.SpA}, SpD ${evs.SpD}, Speed ${evs.Speed}<br>
+      <strong>Total EVs:</strong> ${evTotal.textContent}/510
+    `;
+    // Si quieres enviar por correo:
+    // window.location.href = `mailto:pokegirl.lat@outlook.com?subject=Datos Pokémon&body=${encodeURIComponent(JSON.stringify({ivs, evs}))}`;
+  });
+</script>
+
+
+
+
+
+
+  
+         
+    
+  <footer class="wrap" id="contacto" style="padding-bottom:28px; color:var(--muted)">
+    © Pokegirl.lat  — Legalidad verificada y atención cercana.
   </footer>
 
   <script>
-    // Ejemplo: abrir modal de detalles (placeholder)
-    document.querySelectorAll('.product .pill:first-child').forEach(btn=>{
-      btn.addEventListener('click', ()=> alert('Aquí iría el modal con stats, IV/EV, movimientos y opciones.'));
+    // Utilidades de cálculo (fórmulas oficiales de stats)
+    // HP: floor( ((2*Base + IV + floor(EV/4)) * Level / 100) ) + Level + 10
+    // Otros: floor( ( floor( ((2*Base + IV + floor(EV/4)) * Level / 100) ) + 5 ) * Nature )
+    function calcHP(base, iv, ev, level){
+      return Math.floor(((2*base + iv + Math.floor(ev/4)) * level) / 100) + level + 10;
+    }
+    function calcStat(base, iv, ev, level, nature){
+      const pre = Math.floor(((2*base + iv + Math.floor(ev/4)) * level) / 100) + 5;
+      return Math.floor(pre * nature);
+    }
+
+    // Atributos rápidos: Ball, Shiny, Alpha
+     const PokemonSel = document.getElementById('Pokemon');
+    const ballSel = document.getElementById('ball');
+    const Level 50Chk = document.getElementById('Level 50');
+    const Level 100Chk = document.getElementById('Level 100');
+    const shinyChk = document.getElementById('shiny');
+    const alphaChk = document.getElementById('alpha');
+    const attrResult = document.getElementById('attrResult');
+    function updateAttrs(){
+      attrResult.textContent = ` Pokemon: ${PokemonSel.value}  Ball: ${ballSel.value} 
+      · Level 50: ${Level 50Chk.checked ? 'Sí' : 'No'}
+      · Level 100: ${Level 100Chk.checked ? 'Sí' : 'No'}
+      
+      · Shiny: ${shinyChk.checked ? 'Sí' : 'No'} · Alpha: ${alphaChk.checked ? 'Sí' : 'No'}`;
+    }
+    [ PokemonSel,   ballSel, Level 50Chk, Level 100Cnk, shinyChk, alphaChk].forEach(el => el.addEventListener('change', updateAttrs));
+    updateAttrs();
+
+    // Previsualización de stats con parámetros base
+    const levelInput = document.getElementById('level');
+    const natureInput = document.getElementById('nature');
+    const baseHP = document.getElementById('baseHP');
+    const baseAtk = document.getElementById('baseAtk');
+    const baseDef = document.getElementById('baseDef');
+    const baseSpA = document.getElementById('baseSpA');
+    const baseSpD = document.getElementById('baseSpD');
+    const baseSpe = document.getElementById('baseSpe');
+    const ivAll = document.getElementById('ivAll');
+    const evAll = document.getElementById('evAll');
+    const previewBtn = document.getElementById('previewStats');
+    const previewResult = document.getElementById('previewResult');
+
+    previewBtn.addEventListener('click', ()=>{
+      const L = clamp(parseInt(levelInput.value),1,100);
+      const N = parseFloat(natureInput.value);
+      const IV = clamp(parseInt(ivAll.value),0,31);
+      const EV = clamp(parseInt(evAll.value),0,252);
+
+      const hp  = calcHP (parseInt(baseHP.value),  IV, EV, L);
+      const atk = calcStat(parseInt(baseAtk.value), IV, EV, L, N);
+      const def = calcStat(parseInt(baseDef.value), IV, EV, L, N);
+      const spa = calcStat(parseInt(baseSpA.value), IV, EV, L, N);
+      const spd = calcStat(parseInt(baseSpD.value), IV, EV, L, N);
+      const spe = calcStat(parseInt(baseSpe.value), IV, EV, L, N);
+
+      previewResult.textContent = `HP/Atk/Def/SpA/SpD/Spe: ${hp}/${atk}/${def}/${spa}/${spd}/${spe}`;
     });
+
+    // IV Calculator: invertir fórmula para estimar IV dado stat observado
+    const ivStatSelect = document.getElementById('ivStatSelect');
+    const observedStat = document.getElementById('observedStat');
+    const evForIV = document.getElementById('evForIV');
+    const btnCalcIV = document.getElementById('btnCalcIV');
+    const ivResult = document.getElementById('ivResult');
+
+    btnCalcIV.addEventListener('click', ()=>{
+      const statName = ivStatSelect.value;
+      const obs = parseInt(observedStat.value);
+      const EV = clamp(parseInt(evForIV.value),0,252);
+      const L = clamp(parseInt(levelInput.value),1,100);
+      const N = parseFloat(natureInput.value);
+
+      if(isNaN(obs)){ ivResult.textContent = 'IV estimado: —'; return; }
+
+      let base = getBase(statName);
+      let iv;
+      if(statName === 'HP'){
+        // obs = floor(((2*base + iv + floor(EV/4)) * L)/100) + L + 10
+        // Aproximación inversa: iv ≈ ceil( ( (obs - L - 10) * 100 / L ) - 2*base - floor(EV/4) )
+        iv = Math.ceil( ((obs - L - 10) * 100 / L) - 2*base - Math.floor(EV/4) );
+      }else{
+        // obs = floor( ( floor(((2*base + iv + floor(EV/4)) * L)/100) + 5 ) * N )
+        // Invertimos aproximando: pre ≈ ceil(obs / N) - 5
+        // iv ≈ ceil( ( pre*100 / L ) - 2*base - floor(EV/4) )
+        const pre = Math.ceil(obs / N) - 5;
+        iv = Math.ceil( (pre * 100 / L) - 2*base - Math.floor(EV/4) );
+      }
+      iv = clamp(iv,0,31);
+      ivResult.textContent = `IV estimado: ${iv}`;
+    });
+
+    // EV Calculator: estimar EV para alcanzar un stat objetivo con IV dado
+    const evStatSelect = document.getElementById('evStatSelect');
+    const targetStat = document.getElementById('targetStat');
+    const ivForEV = document.getElementById('ivForEV');
+    const btnCalcEV = document.getElementById('btnCalcEV');
+    const evResult = document.getElementById('evResult');
+
+    btnCalcEV.addEventListener('click', ()=>{
+      const statName = evStatSelect.value;
+      const target = parseInt(targetStat.value);
+      const IV = clamp(parseInt(ivForEV.value),0,31);
+      const L = clamp(parseInt(levelInput.value),1,100);
+      const N = parseFloat(natureInput.value);
+
+      if(isNaN(target)){ evResult.textContent = 'EV necesario: —'; return; }
+
+      let base = getBase(statName);
+      let ev;
+      if(statName === 'HP'){
+        // target = floor(((2*base + IV + floor(EV/4)) * L)/100) + L + 10
+        // Aproximación inversa: floor(EV/4) ≈ ceil( ( (target - L - 10) * 100 / L ) - 2*base - IV )
+        const quarter = Math.ceil( ((target - L - 10) * 100 / L) - 2*base - IV );
+        ev = clamp(quarter * 4, 0, 252);
+      }else{
+        // target = floor( ( floor(((2*base + IV + floor(EV/4)) * L)/100) + 5 ) * N )
+        // pre ≈ ceil(target / N) - 5
+        const pre = Math.ceil(target / N) - 5;
+        const quarter = Math.ceil( (pre * 100 / L) - 2*base - IV );
+        ev = clamp(quarter * 4, 0, 252);
+      }
+      evResult.textContent = `EV necesario: ${ev}`;
+    });
+
+    // Level Calculator: stats al nivel elegido (usa bases del panel de parámetros)
+    const levelCheck = document.getElementById('levelCheck');
+    const natureCheck = document.getElementById('natureCheck');
+    const ivCheck = document.getElementById('ivCheck');
+    const evCheck = document.getElementById('evCheck');
+    const btnLevelStats = document.getElementById('btnLevelStats');
+    const levelResult = document.getElementById('levelResult');
+
+    btnLevelStats.addEventListener('click', ()=>{
+      const L = clamp(parseInt(levelCheck.value),1,100);
+      const N = parseFloat(natureCheck.value);
+      const IV = clamp(parseInt(ivCheck.value),0,31);
+      const EV = clamp(parseInt(evCheck.value),0,252);
+
+      const hp  = calcHP (parseInt(baseHP.value),  IV, EV, L);
+      const atk = calcStat(parseInt(baseAtk.value), IV, EV, L, N);
+      const def = calcStat(parseInt(baseDef.value), IV, EV, L, N);
+      const spa = calcStat(parseInt(baseSpA.value), IV, EV, L, N);
+      const spd = calcStat(parseInt(baseSpD.value), IV, EV, L, N);
+      const spe = calcStat(parseInt(baseSpe.value), IV, EV, L, N);
+
+      levelResult.textContent = `HP/Atk/Def/SpA/SpD/Spe: ${hp}/${atk}/${def}/${spa}/${spd}/${spe}`;
+    });
+
+    // Helpers
+    function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+    function getBase(statName){
+      switch(statName){
+        case 'HP':  return parseInt(baseHP.value);
+        case 'Atk': return parseInt(baseAtk.value);
+        case 'Def': return parseInt(baseDef.value);
+        case 'SpA': return parseInt(baseSpA.value);
+        case 'SpD': return parseInt(baseSpD.value);
+        case 'Spe': return parseInt(baseSpe.value);
+        default: return 0;
+      }
+    }
+    <div class="panel">
+  <h3>Base IVs</h3>
+  
+      <label for="Level">Level</label>
+<input type="number" id="Level" min="1" max="100" value="100">
+
+      
+      <label for="ivHP">HP</label>
+  <input type="number" id="ivHP" min="0" max="31" value="31">
+  <label for="ivAtk">Atk</label>
+  <input type="number" id="ivAtk" min="0" max="31" value="31">
+  <label for="ivDef">Def</label>
+  <input type="number" id="ivDef" min="0" max="31" value="31">
+  <label for="ivSpA">SpA</label>
+  <input type="number" id="ivSpA" min="0" max="31" value="31">
+  <label for="ivSpD">SpD</label>
+  <input type="number" id="ivSpD" min="0" max="31" value="31">
+  <label for="ivSpd">Spd</label>
+  <input type="number" id="ivSpd" min="0" max="31" value="31">
+</div>
   </script>
 </body>
+<button class="btn" id="btnEnviar">Enviar pedido</button>
+<script>
+document.getElementById('btnEnviar').addEventListener('click', () => {
+  const pokemon = document.getElementById('pokemon')?.value || '—';
+    const ball = document.getElementById('ball')?.value || '—';
+  const Level 50 = document.getElementById('Level 50')?.checked ? 'Sí' : 'No';
+  const Level 100 = document.getElementById('Level 100')?.checked ? 'Sí' : 'No';
+  
+  const shiny = document.getElementById('shiny')?.checked ? 'Sí' : 'No';
+  const alpha = document.getElementById('alpha')?.checked ? 'Sí' : 'No';
+
+  const ivs = {
+    HP: document.getElementById('ivHP')?.value || '—',
+    Atk: document.getElementById('ivAtk')?.value || '—',
+    Def: document.getElementById('ivDef')?.value || '—',
+    SpA: document.getElementById('ivSpA')?.value || '—',
+    SpD: document.getElementById('ivSpD')?.value || '—',
+    Speed: document.getElementById('ivSpd')?.value || '—'
+  };
+
+  const evs = {
+    HP: document.getElementById('evHP')?.value || '—',
+    Atk: document.getElementById('evAtk')?.value || '—',
+    Def: document.getElementById('evDef')?.value || '—',
+    SpA: document.getElementById('evSpA')?.value || '—',
+    SpD: document.getElementById('evSpD')?.value || '—',
+    Speed: document.getElementById('evSpd')?.value || '—'
+  };
+
+  const body = `
+Pedido de Pokemon competitivo:
+
+Pokemon: ${Pokemon}
+Ball: ${ball}
+Shiny: ${shiny}
+Alpha: ${alpha}
+
+IVs:
+- Level: ${ivs.Level}
+- HP: ${ivs.HP}
+- Atk: ${ivs.Atk}
+- Def: ${ivs.Def}
+- SpA: ${ivs.SpA}
+- SpD: ${ivs.SpD}
+- Speed: ${ivs.Speed}
+
+EVs:
+- HP: ${evs.HP}
+- Atk: ${evs.Atk}
+- Def: ${evs.Def}
+- SpA: ${evs.SpA}
+- SpD: ${evs.SpD}
+- Speed: ${evs.Speed}
+`;
+
+  const mailto = `mailto:pokegirl.lat@outlook.com?subject=Pedido Pokémon competitivo&body=${encodeURIComponent(body)}`;
+  window.location.href = mailto;
+});
+</script>
+
+      
+      
 </html>
