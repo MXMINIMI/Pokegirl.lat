@@ -650,9 +650,54 @@ I’m offering my Pkmn breeding service! starting at 2 dollars Poke + Item / Or 
     <div class="result" id="evWarning">
                </div>
 
-    <button type="submit" class="btn">Enviar pedido</button>
-  </form>
-</aside>
+
+<button class="btn" id="btnEnviar">Enviar pedido</button>
+
+<script>
+document.getElementById('btnEnviar').addEventListener('click', () => {
+  const pokemon = document.getElementById('Pokemon').value;
+  const ball = document.getElementById('ball').value;
+  const shiny = document.getElementById('shiny').checked ? 'Sí' : 'No';
+  const alpha = document.getElementById('alpha').checked ? 'Sí' : 'No';
+
+  const ivs = `
+IVs:
+- HP: ${document.getElementById('ivHP').value}
+- Atk: ${document.getElementById('ivAtk').value}
+- Def: ${document.getElementById('ivDef').value}
+- SpA: ${document.getElementById('ivSpA').value}
+- SpD: ${document.getElementById('ivSpD').value}
+- Speed: ${document.getElementById('ivSpd').value}`;
+
+  const evs = `
+EVs:
+- HP: ${document.getElementById('evHP').value}
+- Atk: ${document.getElementById('evAtk').value}
+- Def: ${document.getElementById('evDef').value}
+- SpA: ${document.getElementById('evSpA').value}
+- SpD: ${document.getElementById('evSpD').value}
+- Speed: ${document.getElementById('evSpd').value}`;
+
+  const body = `Pedido de Pokémon competitivo:
+
+Pokémon: ${pokemon}
+Ball: ${ball}
+Shiny: ${shiny}
+Alpha: ${alpha}
+
+${ivs}
+
+${evs}`;
+
+  window.location.href = `mailto:pokegirl.lat@outlook.com?subject=Pedido Pokémon competitivo&body=${encodeURIComponent(body)}`;
+});
+</script>
+
+
+
+
+
+      
 
 
 
