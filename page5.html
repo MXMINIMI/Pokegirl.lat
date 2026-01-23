@@ -936,7 +936,7 @@ evInputs.forEach(input=>input.addEventListener('input', updateEVs));
 <button class="btn" id="btnEnviar">Enviar pedido</button>
 <script>
 document.getElementById('btnEnviar').addEventListener('click', () => {
-  const pokemon = document.getElementById('pokemonSelect')?.value || '—';
+  const pokemon = document.getElementById('pokemon')?.value || '—';
   const ball = document.getElementById('ball')?.value || '—';
   const shiny = document.getElementById('shiny')?.checked ? 'Sí' : 'No';
   const alpha = document.getElementById('alpha')?.checked ? 'Sí' : 'No';
