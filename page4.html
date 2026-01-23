@@ -256,6 +256,79 @@
   updateEVs();
 </script>   
 
+
+     <!-- Botón de enviar -->
+  <button class="btn" id="btnEnviar">Enviar datos</button>
+
+  <!-- Resumen -->
+  <div class="panel">
+    <h3>Resumen</h3>
+    <div id="resumenDatos">Aquí aparecerán los datos seleccionados.</div>
+  </div>
+</aside>
+
+<script>
+  // Validación EVs
+  const evInputs = ['evHP','evAtk','evDef','evSpA','evSpD','evSpd'].map(id=>document.getElementById(id));
+  const evTotal = document.getElementById('evTotal');
+  const evWarning = document.getElementById('evWarning');
+
+  function updateEVs(){
+    let total = 0;
+    evInputs.forEach(input=>{
+      let val = parseInt(input.value)||0;
+      if(val > 252){ input.value = 252; val = 252; }
+      if(val < 0){ input.value = 0; val = 0; }
+      total += val;
+    });
+    evTotal.textContent = total;
+    if(total > 510){
+      evWarning.textContent = "⚠️ Has excedido el límite de 510 EVs.";
+      evWarning.style.color = "red";
+    } else {
+      evWarning.textContent = "";
+    }
+  }
+evInputs.forEach(input=>input.addEventListener('input', updateEVs));
+  updateEVs();
+
+  // Botón enviar
+  const btnEnviar = document.getElementById('btnEnviar');
+  const resumenDatos = document.getElementById('resumenDatos');
+
+  btnEnviar.addEventListener('click', ()=>{
+    const ivs = {
+      HP: document.getElementById('ivHP').value,
+      Atk: document.getElementById('ivAtk').value,
+      Def: document.getElementById('ivDef').value,
+      SpA: document.getElementById('ivSpA').value,
+      SpD: document.getElementById('ivSpD').value,
+      Speed: document.getElementById('ivSpd').value
+    };
+    const evs = {
+      HP: document.getElementById('evHP').value,
+      Atk: document.getElementById('evAtk').value,
+      Def: document.getElementById('evDef').value,
+      SpA: document.getElementById('evSpA').value,
+      SpD: document.getElementById('evSpD').value,
+      Speed: document.getElementById('evSpd').value
+    };
+    resumenDatos.innerHTML = `
+      <strong>IVs:</strong> HP ${ivs.HP}, Atk ${ivs.Atk}, Def ${ivs.Def}, SpA ${ivs.SpA}, SpD ${ivs.SpD}, Speed ${ivs.Speed}<br>
+      <strong>EVs:</strong> HP ${evs.HP}, Atk ${evs.Atk}, Def ${evs.Def}, SpA ${evs.SpA}, SpD ${evs.SpD}, Speed ${evs.Speed}<br>
+      <strong>Total EVs:</strong> ${evTotal.textContent}/510
+    `;
+    // Si quieres enviar por correo:
+    // window.location.href = `mailto:tuemail@dominio.com?subject=Datos Pokémon&body=${encodeURIComponent(JSON.stringify({ivs, evs}))}`;
+  });
+</script>
+
+
+
+
+
+
+  
         
 
         
