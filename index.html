@@ -1147,62 +1147,7 @@ evInputs.forEach(input=>input.addEventListener('input', updateEVs));
 </div>
   </script>
 </body>
-<button class="btn" id="btnEnviar">Enviar pedido</button>
-<script>
-document.getElementById('btnEnviar').addEventListener('click', () => {
-  const pokemon = document.getElementById('pokemon')?.value || '—';
-    const ball = document.getElementById('ball')?.value || '—';
-   const shiny = document.getElementById('shiny')?.checked ? 'Sí' : 'No';
-  const alpha = document.getElementById('alpha')?.checked ? 'Sí' : 'No';
 
-  const ivs = {
-    HP: document.getElementById('ivHP')?.value || '—',
-    Atk: document.getElementById('ivAtk')?.value || '—',
-    Def: document.getElementById('ivDef')?.value || '—',
-    SpA: document.getElementById('ivSpA')?.value || '—',
-    SpD: document.getElementById('ivSpD')?.value || '—',
-    Speed: document.getElementById('ivSpd')?.value || '—'
-  };
-
-  const evs = {
-    HP: document.getElementById('evHP')?.value || '—',
-    Atk: document.getElementById('evAtk')?.value || '—',
-    Def: document.getElementById('evDef')?.value || '—',
-    SpA: document.getElementById('evSpA')?.value || '—',
-    SpD: document.getElementById('evSpD')?.value || '—',
-    Speed: document.getElementById('evSpd')?.value || '—'
-  };
-
-  const body = `
-Pedido de Pokemon competitivo:
-
-Pokemon: ${Pokemon}
-Ball: ${ball}
-Shiny: ${shiny}
-Alpha: ${alpha}
-
-IVs:
-- Level: ${ivs.Level}
-- HP: ${ivs.HP}
-- Atk: ${ivs.Atk}
-- Def: ${ivs.Def}
-- SpA: ${ivs.SpA}
-- SpD: ${ivs.SpD}
-- Speed: ${ivs.Speed}
-
-EVs:
-- HP: ${evs.HP}
-- Atk: ${evs.Atk}
-- Def: ${evs.Def}
-- SpA: ${evs.SpA}
-- SpD: ${evs.SpD}
-- Speed: ${evs.Speed}
-`;
-
-  const mailto = `mailto:pokegirl.lat@outlook.com?subject=Pedido Pokémon competitivo&body=${encodeURIComponent(body)}`;
-  window.location.href = mailto;
-});
-</script>
 
       
       
