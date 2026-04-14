@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-  
- 
-  <title>Pokegirl.lat </title>
-
-
+    <title>Pokegirl.lat </title>
   <link rel="icon" href="favicon.png" type="image">
+  <meta charset="UTF-8">
 
   <style>
-    body {
-      background-image: url("j2.png");
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
+    .carousel {
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+    }
+    .carousel-item {
+      flex: 0 0 33.33%; /* 3 imágenes visibles */
+      text-align: center;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
     }
   </style>
-
-  
 </head>
 <body>
 
-    <h1>
-    <p ALIGN="center"> Hi! I'm Angelika, please join this group, I'll do Pokémon giveaways here :
-    </h1>
-    </p>
-            
-       <h2> <P ALIGN="center"> POKEMON CHAMPIONS LEAGUE </P>
-       </h2>
-      <br>
-      <a href="https://facebook.com/groups/1442257530388301/">
-        <img src="champions.png" alt="Hola :3" class="imagen-hover">
-        </a>
-       </p>
+<div class="carousel">
+  <div class="carousel-item">
+    Pokemon Giveaways here:
+    <a href="https://facebook.com/groups/1442257530388301/">
+      <img src="imagen1.jpg" alt="Opción 1">
+    </a>
+  </div>
+  <div class="carousel-item">
+    Do you need to buy Pokémon?
+    <a href="https://wa.me/5637790623">
+      <img src="imagen2.jpg" alt="Opción 2">
+    </a>
+  </div>
+  <div class="carousel-item">
+    Do you like Pokemon Battles Replays?
+    <a href="https://youtube.com/@likamegam?si=QWDISw0aee_-cKPJ">
+      <img src="youtubebn.png" alt="Opción 3">
+    </a>
+  </div>
+</div>
 
-            
-       <h2> <P ALIGN="center"> Enjoy Pokemon battles replays </P>
-       </h2>
-      
-      <a href="https://youtube.com/@likamegam?si=QWDISw0aee_-cKPJ">
-        <img src="youtubebn.png" alt="Youtube Replays :3" class="imagen-hover">
-        </a>
-       </p>
-   
 </body>
 </html>
