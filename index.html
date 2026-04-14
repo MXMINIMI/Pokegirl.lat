@@ -24,24 +24,31 @@
 
 
     
-  <style>
+
+<style>
     .carousel {
       display: flex;
       overflow: hidden;
       width: 100%;
-      max-width: 900px;
+      max-width: 1200px;
       margin: auto;
     }
     .carousel-item {
-      flex: 0 0 33.33%; /* 3 imágenes visibles */
+      flex: 0 0 25%; /* 4 elementos visibles */
       text-align: center;
+      padding: 5px;
     }
     .carousel-item img {
-      width: 100%;
-      height: auto;
+      width: 100%;          /* todas ocupan el mismo ancho del bloque */
+      height: 250px;        /* altura fija para uniformidad */
+      object-fit: cover;    /* recorta la imagen manteniendo proporción */
       border-radius: 8px;
     }
   </style>
+
+
+
+    
 </head>
 <body>
 
